@@ -92,26 +92,35 @@ public class Line implements IShape {
 
     @Override
     public float calculateArea() {
-        return 1;
+        return 0; // Lines do not have area
     }
 
     @Override
     public float calculatePerimeter() {
-        return 1;
+        return (float) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
     @Override
     public float calculateDistance(Point p) {
-        return 0;
+        float numerator = Math.abs((y2 - y1) * p.getX() - (x2 - x1) * p.getY() + x2 * y1 - y2 * x1);
+        float denominator = (float) Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
+
+        return numerator / denominator;
     }
 
     @Override
     public float calculateDistance(Line l) {
-        return 0;
+        float xDelta = x2 - x1;
+        float yDelta = y2 - y1;
+        float numerator = Math.abs((l.getY2() - l.getY1()) * x1 - (l.getX2() - l.getX1()) * y1 + l.getX2() * l.getY1() - l.getY2() * l.getX1());
+        float denominator = (float) Math.sqrt(Math.pow(yDelta, 2) + Math.pow(xDelta, 2));
+
+        return numerator / denominator;
     }
 
     @Override
     public float calculateDistance(Circle c) {
-        return 0;
+        float distanceToCenter = (float) Math.sqrt(Math.pow(c.getX() - x1, 2) + Math.pow(c.getY() - y1, 2));
+        return Math.abs(distanceToCenter - c.getRadius());
     }
 }

@@ -27,22 +27,23 @@ public class Main {
                 printVariable(y);
                 point p3 = (x, y);
                 printVariable(p3);
+                line l2 = from (x, y) to (x, y);
+                printVariable(l2);
+                circle c2 = center(x, y) radius=y;
+                printVariable(c2);
+                a = area(c2);
+                area(c2)
+                printVariable(a);
+                e = 2.6;
+                printVariable(e);
                 """);
 
         GeometryDSLLexer lexer = new GeometryDSLLexer(charStream);
         GeometryDSLParser parser = new GeometryDSLParser(new CommonTokenStream(lexer));
         ParseTree parseTree = parser.geometry();
 
-        GeometryAssignmentsVisitor geometryAssignmentsVisitor = new GeometryAssignmentsVisitor();
-        geometryAssignmentsVisitor.visit(parseTree);
-
-        GeometryShapeVisitor geometryShapeVisitor = new GeometryShapeVisitor();
-        geometryShapeVisitor.visit(parseTree);
-
-        GeometryFunctionsVisitor geometryFunctionsVisitor = new GeometryFunctionsVisitor();
-        geometryFunctionsVisitor.visit(parseTree);
-
-//        System.out.println(variables);
+        GeometryVisitor geometryVisitor = new GeometryVisitor();
+        geometryVisitor.visit(parseTree);
     }
 
     public static Map<String, Object> getVariables() {

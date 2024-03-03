@@ -80,26 +80,28 @@ public class Circle implements IShape {
 
     @Override
     public float calculateArea() {
-        return 0;
+        return (float) (Math.PI * Math.pow(radius, 2));
     }
 
     @Override
     public float calculatePerimeter() {
-        return 0;
+        return (float) (2 * Math.PI * radius);
     }
 
     @Override
     public float calculateDistance(Point p) {
-        return 0;
+        return (float) Math.abs(Math.sqrt(Math.pow(p.getX() - x, 2) + Math.pow(p.getY() - y, 2)) - radius);
     }
 
     @Override
     public float calculateDistance(Line l) {
-        return 0;
+        float distanceToCenter = (float) Math.sqrt(Math.pow(l.getX1() - x, 2) + Math.pow(l.getY1() - y, 2));
+        return Math.abs(distanceToCenter - radius);
     }
 
     @Override
     public float calculateDistance(Circle c) {
-        return 0;
+        float distanceBetweenCenters = (float) Math.sqrt(Math.pow(c.getX() - x, 2) + Math.pow(c.getY() - y, 2));
+        return Math.abs(distanceBetweenCenters - (c.getRadius() + radius));
     }
 }

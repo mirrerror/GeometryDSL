@@ -28,16 +28,15 @@ statement : pointStmt
 
 assignStmt: ID '=' expr ';' ;
 
-pointStmt : 'point' ID '=' '(' x=NUMBER ',' y=NUMBER ')' ';' |
-            'point' ID '=' '(' v1=ID ',' v2=ID ')' ';' ;
+pointStmt : 'point' ID '=' '(' x=expr ',' y=expr ')' ';' ;
 
-lineStmt : 'line' ID '=' 'from' '(' x1=NUMBER ',' y1=NUMBER ')' 'to' '(' x2=NUMBER ',' y2=NUMBER ')' ';' |
+lineStmt : 'line' ID '=' 'from' '(' e1=expr ',' e2=expr ')' 'to' '(' e3=expr ',' e4=expr ')' ';' |
            'line' ID '=' 'from' '(' p1=ID ')' 'to' '(' p2=ID ')' ';' ;
 
-circleStmt : 'circle' ID '=' 'center' '(' x=NUMBER ',' y=NUMBER ')' 'radius' '=' r=NUMBER ';' |
-             'circle' ID '=' 'center' '(' p=ID ')' 'radius' '=' r=NUMBER ';' ;
+circleStmt : 'circle' ID '=' 'center' '(' e1=expr ',' e2=expr ')' 'radius' '=' r=expr ';' |
+             'circle' ID '=' 'center' '(' p=ID ')' 'radius' '=' r=expr ';' ;
 
-functionCall : ID '(' args ')' ';' ;
+functionCall : ID '(' args ')' ';'? ; // TODO: fix this
 
 args : (expr (',' expr)*)? ;
 
