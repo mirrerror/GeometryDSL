@@ -22,6 +22,12 @@ public interface GeometryDSLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStatement(GeometryDSLParser.StatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GeometryDSLParser#assignStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignStmt(GeometryDSLParser.AssignStmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GeometryDSLParser#pointStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

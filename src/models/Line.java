@@ -89,4 +89,29 @@ public class Line implements IShape {
                 ", y2=" + y2 +
                 '}';
     }
+
+    @Override
+    public float calculateArea() {
+        return 1;
+    }
+
+    @Override
+    public float calculatePerimeter() {
+        return 1;
+    }
+
+    @Override
+    public float calculateDistance(Point p) {
+        return 0;
+    }
+
+    @Override
+    public float calculateDistance(Line l) {
+        return 0;
+    }
+
+    @Override
+    public float calculateDistance(Circle c) {
+        return 0;
+    }
 }

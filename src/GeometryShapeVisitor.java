@@ -3,23 +3,26 @@ import models.IShape;
 import models.Line;
 import models.Point;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class GeometryShapeVisitor extends GeometryDSLBaseVisitor<IShape> {
-
-    private final Map<String, IShape> variables;
-
-    public GeometryShapeVisitor() {
-        this.variables = new HashMap<>();
-    }
 
     @Override
     public IShape visitPointStmt(GeometryDSLParser.PointStmtContext ctx) {
-        String id = ctx.ID().getText();
-        float x = Float.parseFloat(ctx.x.getText());
-        float y = Float.parseFloat(ctx.y.getText());
-        variables.put(id, new Point(id, x, y));
+        String id = ctx.ID().get(0).getText();
+
+        Point point;
+
+        float x;
+        float y;
+        if(ctx.v1 == null) {
+            x = Float.parseFloat(ctx.x.getText());
+            y = Float.parseFloat(ctx.y.getText());
+        } else {
+            x = (Float) Main.getVariables().get(ctx.v1.getText());
+            y = (Float) Main.getVariables().get(ctx.v2.getText());
+        }
+        point = new Point(id, x, y);
+
+        Main.getVariables().put(id, point);
         return visitChildren(ctx);
     }
 
@@ -36,11 +39,11 @@ public class GeometryShapeVisitor extends GeometryDSLBaseVisitor<IShape> {
             float y2 = Float.parseFloat(ctx.y2.getText());
             line = new Line(id, x1, y1, x2, y2);
         } else {
-            Point p1 = (Point) variables.get(ctx.p1.getText());
-            Point p2 = (Point) variables.get(ctx.p2.getText());
+            Point p1 = (Point) Main.getVariables().get(ctx.p1.getText());
+            Point p2 = (Point) Main.getVariables().get(ctx.p2.getText());
             line = new Line(id, p1, p2);
         }
-        variables.put(id, line);
+        Main.getVariables().put(id, line);
         return visitChildren(ctx);
     }
 
@@ -52,7 +55,7 @@ public class GeometryShapeVisitor extends GeometryDSLBaseVisitor<IShape> {
         float radius = Float.parseFloat(ctx.r.getText());
 
         if(ctx.p != null) {
-            Point p = (Point) variables.get(ctx.p.getText());
+            Point p = (Point) Main.getVariables().get(ctx.p.getText());
             circle = new Circle(id, p, radius);
         } else {
             float x = Float.parseFloat(ctx.x.getText());
@@ -60,11 +63,8 @@ public class GeometryShapeVisitor extends GeometryDSLBaseVisitor<IShape> {
             circle = new Circle(id, x, y, radius);
         }
 
-        variables.put(id, circle);
+        Main.getVariables().put(id, circle);
         return visitChildren(ctx);
     }
 
-    public Map<String, IShape> getVariables() {
-        return variables;
-    }
 }

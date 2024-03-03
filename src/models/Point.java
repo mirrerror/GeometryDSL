@@ -59,4 +59,29 @@ public class Point implements IShape {
                 ", y=" + y +
                 '}';
     }
+
+    @Override
+    public float calculateArea() {
+        return 1;
+    }
+
+    @Override
+    public float calculatePerimeter() {
+        return 1;
+    }
+
+    @Override
+    public float calculateDistance(Point p) {
+        return (float) Math.sqrt(Math.pow(p.getX() - x, 2) + Math.pow(p.getY() - y, 2));
+    }
+
+    @Override
+    public float calculateDistance(Line l) {
+        return 0;
+    }
+
+    @Override
+    public float calculateDistance(Circle c) {
+        return 0;
+    }
 }

@@ -40,6 +40,18 @@ public class GeometryDSLBaseListener implements GeometryDSLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAssignStmt(GeometryDSLParser.AssignStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignStmt(GeometryDSLParser.AssignStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPointStmt(GeometryDSLParser.PointStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}

@@ -23,9 +23,13 @@ statement : pointStmt
           | lineStmt
           | circleStmt
           | functionCall
+          | assignStmt
           ;
 
-pointStmt : 'point' ID '=' '(' x=NUMBER ',' y=NUMBER ')' ';' ;
+assignStmt: ID '=' expr ';' ;
+
+pointStmt : 'point' ID '=' '(' x=NUMBER ',' y=NUMBER ')' ';' |
+            'point' ID '=' '(' v1=ID ',' v2=ID ')' ';' ;
 
 lineStmt : 'line' ID '=' 'from' '(' x1=NUMBER ',' y1=NUMBER ')' 'to' '(' x2=NUMBER ',' y2=NUMBER ')' ';' |
            'line' ID '=' 'from' '(' p1=ID ')' 'to' '(' p2=ID ')' ';' ;

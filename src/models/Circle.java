@@ -77,4 +77,29 @@ public class Circle implements IShape {
                 ", radius=" + radius +
                 '}';
     }
+
+    @Override
+    public float calculateArea() {
+        return 0;
+    }
+
+    @Override
+    public float calculatePerimeter() {
+        return 0;
+    }
+
+    @Override
+    public float calculateDistance(Point p) {
+        return 0;
+    }
+
+    @Override
+    public float calculateDistance(Line l) {
+        return 0;
+    }
+
+    @Override
+    public float calculateDistance(Circle c) {
+        return 0;
+    }
 }

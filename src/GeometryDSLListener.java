@@ -27,6 +27,16 @@ public interface GeometryDSLListener extends ParseTreeListener {
 	 */
 	void exitStatement(GeometryDSLParser.StatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#assignStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignStmt(GeometryDSLParser.AssignStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#assignStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignStmt(GeometryDSLParser.AssignStmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GeometryDSLParser#pointStmt}.
 	 * @param ctx the parse tree
 	 */
