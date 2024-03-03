@@ -1,0 +1,59 @@
+// Generated from D:/MyIdeaProjects2023/GeometryDSL/grammar/GeometryDSL.g4 by ANTLR 4.13.1
+import org.antlr.v4.runtime.tree.ParseTreeListener;
+
+/**
+ * This interface defines a complete listener for a parse tree produced by
+ * {@link GeometryDSLParser}.
+ */
+public interface GeometryDSLListener extends ParseTreeListener {
+	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#geometry}.
+	 * @param ctx the parse tree
+	 */
+	void enterGeometry(GeometryDSLParser.GeometryContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#geometry}.
+	 * @param ctx the parse tree
+	 */
+	void exitGeometry(GeometryDSLParser.GeometryContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatement(GeometryDSLParser.StatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatement(GeometryDSLParser.StatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#pointStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterPointStmt(GeometryDSLParser.PointStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#pointStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitPointStmt(GeometryDSLParser.PointStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#lineStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterLineStmt(GeometryDSLParser.LineStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#lineStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitLineStmt(GeometryDSLParser.LineStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#circleStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterCircleStmt(GeometryDSLParser.CircleStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#circleStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitCircleStmt(GeometryDSLParser.CircleStmtContext ctx);
+}
