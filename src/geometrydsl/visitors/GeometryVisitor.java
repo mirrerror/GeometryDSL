@@ -11,13 +11,17 @@ import geometrydsl.utils.ExpressionManager;
 
 public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
+    private final ExpressionManager expressionManager;
+
+    public GeometryVisitor(ExpressionManager expressionManager) {
+        this.expressionManager = expressionManager;
+    }
+
     @Override
     public Object visitPointStmt(GeometryDSLParser.PointStmtContext ctx) {
         String id = ctx.ID().getText();
 
         Point point;
-
-        ExpressionManager expressionManager = new ExpressionManager();
 
         Float x = (Float) expressionManager.getValue(ctx.x, this);
         Float y = (Float) expressionManager.getValue(ctx.y, this);
@@ -35,7 +39,6 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
         String id = ctx.ID().get(0).getText();
 
         if(ctx.e1 != null) {
-            ExpressionManager expressionManager = new ExpressionManager();
             Float x1 = (Float) expressionManager.getValue(ctx.e1, this);
             Float y1 = (Float) expressionManager.getValue(ctx.e2, this);
             Float x2 = (Float) expressionManager.getValue(ctx.e3, this);
@@ -55,8 +58,6 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
         Circle circle;
 
         String id = ctx.ID().get(0).getText();
-
-        ExpressionManager expressionManager = new ExpressionManager();
 
         Float radius = (Float) expressionManager.getValue(ctx.r, this);
 

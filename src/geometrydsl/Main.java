@@ -1,5 +1,6 @@
 package geometrydsl;
 
+import geometrydsl.utils.ExpressionManager;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -22,7 +23,7 @@ public class Main {
         GeometryDSLParser parser = new GeometryDSLParser(new CommonTokenStream(lexer));
         ParseTree parseTree = parser.geometry();
 
-        GeometryVisitor geometryVisitor = new GeometryVisitor();
+        GeometryVisitor geometryVisitor = new GeometryVisitor(new ExpressionManager());
         geometryVisitor.visit(parseTree);
     }
 
