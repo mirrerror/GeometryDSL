@@ -1,7 +1,7 @@
 import models.Circle;
-import models.IShape;
 import models.Line;
 import models.Point;
+import models.Shape;
 
 public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
@@ -73,21 +73,24 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
         switch (functionName) {
             case "distance" -> {
-                IShape shape1 = (IShape) Main.getVariables().get(ctx.args().expr(0).ID().getText());
-                IShape shape2 = (IShape) Main.getVariables().get(ctx.args().expr(1).ID().getText());
-//                return shape1.calculateDistance(shape2); // TODO: fix this
-                return -1.0f;
+                Shape shape1 = (Shape) Main.getVariables().get(ctx.args().expr(0).ID().getText());
+                Shape shape2 = (Shape) Main.getVariables().get(ctx.args().expr(1).ID().getText());
+                return shape1.calculateDistance(shape2);
             }
             case "printVariable" -> {
                 System.out.println(Main.getVariables().get(ctx.args().expr(0).ID().getText()));
                 return (Float) visitChildren(ctx);
             }
+            case "print" -> {
+                System.out.println(visitFunctionCall(ctx.args().expr(0).functionCall()));
+                return (Float) visitChildren(ctx);
+            }
             case "area" -> {
-                IShape shape = (IShape) Main.getVariables().get(ctx.args().expr(0).ID().getText());
+                Shape shape = (Shape) Main.getVariables().get(ctx.args().expr(0).ID().getText());
                 return shape.calculateArea();
             }
             case "perimeter" -> {
-                IShape shape = (IShape) Main.getVariables().get(ctx.args().expr(0).ID().getText());
+                Shape shape = (Shape) Main.getVariables().get(ctx.args().expr(0).ID().getText());
                 return shape.calculatePerimeter();
             }
             default -> {

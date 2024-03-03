@@ -2,7 +2,7 @@ package models;
 
 import java.util.Objects;
 
-public class Circle implements IShape {
+public class Circle extends Shape {
 
     private String id;
     private float x;

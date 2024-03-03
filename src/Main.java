@@ -18,8 +18,8 @@ public class Main {
                 line l1 = from (p1) to (p2);
                 circle c1 = center(p1) radius=5;
                 point p3 = (5, 6);
-                distance(p1, p2);
-                distance(p1, p3);
+                print(distance(p1, p2));
+                print(distance(p1, p3));
                 printVariable(p1);
                 x = 5;
                 y = 7;
@@ -32,7 +32,7 @@ public class Main {
                 circle c2 = center(x, y) radius=y;
                 printVariable(c2);
                 a = area(c2);
-                area(c2);
+                print(area(c2));
                 printVariable(a);
                 e = 2.6;
                 printVariable(e);

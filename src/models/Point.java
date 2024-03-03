@@ -2,7 +2,7 @@ package models;
 
 import java.util.Objects;
 
-public class Point implements IShape {
+public class Point extends Shape {
 
     private String id;
     private float x;

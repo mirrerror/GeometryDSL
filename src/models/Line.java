@@ -2,7 +2,7 @@ package models;
 
 import java.util.Objects;
 
-public class Line implements IShape {
+public class Line extends Shape {
 
     private String id;
     private float x1;
