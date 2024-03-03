@@ -1,4 +1,4 @@
-package models;
+package geometrydsl.models;
 
 import java.util.Objects;
 

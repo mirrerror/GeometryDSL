@@ -1,7 +1,13 @@
-import models.Circle;
-import models.Line;
-import models.Point;
-import models.Shape;
+package geometrydsl.visitors;
+
+import geometrydsl.GeometryDSLBaseVisitor;
+import geometrydsl.GeometryDSLParser;
+import geometrydsl.Main;
+import geometrydsl.models.Circle;
+import geometrydsl.models.Line;
+import geometrydsl.models.Point;
+import geometrydsl.models.Shape;
+import geometrydsl.utils.ExpressionManager;
 
 public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
@@ -13,8 +19,8 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
         ExpressionManager expressionManager = new ExpressionManager();
 
-        Float x = (Float) expressionManager.getValue(ctx.x);
-        Float y = (Float) expressionManager.getValue(ctx.y);
+        Float x = (Float) expressionManager.getValue(ctx.x, this);
+        Float y = (Float) expressionManager.getValue(ctx.y, this);
 
         point = new Point(id, x, y);
 
@@ -30,10 +36,10 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
         if(ctx.e1 != null) {
             ExpressionManager expressionManager = new ExpressionManager();
-            Float x1 = (Float) expressionManager.getValue(ctx.e1);
-            Float y1 = (Float) expressionManager.getValue(ctx.e2);
-            Float x2 = (Float) expressionManager.getValue(ctx.e3);
-            Float y2 = (Float) expressionManager.getValue(ctx.e4);
+            Float x1 = (Float) expressionManager.getValue(ctx.e1, this);
+            Float y1 = (Float) expressionManager.getValue(ctx.e2, this);
+            Float x2 = (Float) expressionManager.getValue(ctx.e3, this);
+            Float y2 = (Float) expressionManager.getValue(ctx.e4, this);
             line = new Line(id, x1, y1, x2, y2);
         } else {
             Point p1 = (Point) Main.getVariables().get(ctx.p1.getText());
@@ -52,14 +58,14 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
         ExpressionManager expressionManager = new ExpressionManager();
 
-        Float radius = (Float) expressionManager.getValue(ctx.r);
+        Float radius = (Float) expressionManager.getValue(ctx.r, this);
 
         if(ctx.p != null) {
             Point p = (Point) Main.getVariables().get(ctx.p.getText());
             circle = new Circle(id, p, radius);
         } else {
-            Float x = (Float) expressionManager.getValue(ctx.e1);
-            Float y = (Float) expressionManager.getValue(ctx.e2);
+            Float x = (Float) expressionManager.getValue(ctx.e1, this);
+            Float y = (Float) expressionManager.getValue(ctx.e2, this);
             circle = new Circle(id, x, y, radius);
         }
 
