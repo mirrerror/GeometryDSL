@@ -9,8 +9,8 @@ public class Main {
         CharStream charStream = CharStreams.fromString("""
                 point p1 = (1, 2);
                 point p2 = (3, 4);
-                line l1 = from (1, 2) to (3, 4);
-                circle c1 = center(1, 2) radius=5;
+                line l1 = from (p1) to (p2);
+                circle c1 = center(p1) radius=5;
                 """);
 
         GeometryDSLLexer lexer = new GeometryDSLLexer(charStream);

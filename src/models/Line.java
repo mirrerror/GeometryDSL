@@ -18,6 +18,14 @@ public class Line implements IShape {
         this.y2 = y2;
     }
 
+    public Line(String id, Point point1, Point point2) {
+        this.id = id;
+        this.x1 = point1.getX();
+        this.y1 = point1.getY();
+        this.x2 = point2.getX();
+        this.y2 = point2.getY();
+    }
+
     public String getId() {
         return id;
     }

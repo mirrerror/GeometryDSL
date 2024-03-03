@@ -313,7 +313,12 @@ public class GeometryDSLParser extends Parser {
 		public Token y1;
 		public Token x2;
 		public Token y2;
-		public TerminalNode ID() { return getToken(GeometryDSLParser.ID, 0); }
+		public Token p1;
+		public Token p2;
+		public List<TerminalNode> ID() { return getTokens(GeometryDSLParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(GeometryDSLParser.ID, i);
+		}
 		public TerminalNode EQUALS() { return getToken(GeometryDSLParser.EQUALS, 0); }
 		public TerminalNode FROM() { return getToken(GeometryDSLParser.FROM, 0); }
 		public List<TerminalNode> LPAREN() { return getTokens(GeometryDSLParser.LPAREN); }
@@ -357,40 +362,75 @@ public class GeometryDSLParser extends Parser {
 		LineStmtContext _localctx = new LineStmtContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_lineStmt);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(37);
-			match(T__1);
-			setState(38);
-			match(ID);
-			setState(39);
-			match(EQUALS);
-			setState(40);
-			match(FROM);
-			setState(41);
-			match(LPAREN);
-			setState(42);
-			((LineStmtContext)_localctx).x1 = match(NUMBER);
-			setState(43);
-			match(COMMA);
-			setState(44);
-			((LineStmtContext)_localctx).y1 = match(NUMBER);
-			setState(45);
-			match(RPAREN);
-			setState(46);
-			match(TO);
-			setState(47);
-			match(LPAREN);
-			setState(48);
-			((LineStmtContext)_localctx).x2 = match(NUMBER);
-			setState(49);
-			match(COMMA);
-			setState(50);
-			((LineStmtContext)_localctx).y2 = match(NUMBER);
-			setState(51);
-			match(RPAREN);
-			setState(52);
-			match(SEMI);
+			setState(65);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(37);
+				match(T__1);
+				setState(38);
+				match(ID);
+				setState(39);
+				match(EQUALS);
+				setState(40);
+				match(FROM);
+				setState(41);
+				match(LPAREN);
+				setState(42);
+				((LineStmtContext)_localctx).x1 = match(NUMBER);
+				setState(43);
+				match(COMMA);
+				setState(44);
+				((LineStmtContext)_localctx).y1 = match(NUMBER);
+				setState(45);
+				match(RPAREN);
+				setState(46);
+				match(TO);
+				setState(47);
+				match(LPAREN);
+				setState(48);
+				((LineStmtContext)_localctx).x2 = match(NUMBER);
+				setState(49);
+				match(COMMA);
+				setState(50);
+				((LineStmtContext)_localctx).y2 = match(NUMBER);
+				setState(51);
+				match(RPAREN);
+				setState(52);
+				match(SEMI);
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(53);
+				match(T__1);
+				setState(54);
+				match(ID);
+				setState(55);
+				match(EQUALS);
+				setState(56);
+				match(FROM);
+				setState(57);
+				match(LPAREN);
+				setState(58);
+				((LineStmtContext)_localctx).p1 = match(ID);
+				setState(59);
+				match(RPAREN);
+				setState(60);
+				match(TO);
+				setState(61);
+				match(LPAREN);
+				setState(62);
+				((LineStmtContext)_localctx).p2 = match(ID);
+				setState(63);
+				match(RPAREN);
+				setState(64);
+				match(SEMI);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -409,7 +449,11 @@ public class GeometryDSLParser extends Parser {
 		public Token x;
 		public Token y;
 		public Token r;
-		public TerminalNode ID() { return getToken(GeometryDSLParser.ID, 0); }
+		public Token p;
+		public List<TerminalNode> ID() { return getTokens(GeometryDSLParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(GeometryDSLParser.ID, i);
+		}
 		public List<TerminalNode> EQUALS() { return getTokens(GeometryDSLParser.EQUALS); }
 		public TerminalNode EQUALS(int i) {
 			return getToken(GeometryDSLParser.EQUALS, i);
@@ -447,34 +491,67 @@ public class GeometryDSLParser extends Parser {
 		CircleStmtContext _localctx = new CircleStmtContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_circleStmt);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(54);
-			match(T__2);
-			setState(55);
-			match(ID);
-			setState(56);
-			match(EQUALS);
-			setState(57);
-			match(CENTER);
-			setState(58);
-			match(LPAREN);
-			setState(59);
-			((CircleStmtContext)_localctx).x = match(NUMBER);
-			setState(60);
-			match(COMMA);
-			setState(61);
-			((CircleStmtContext)_localctx).y = match(NUMBER);
-			setState(62);
-			match(RPAREN);
-			setState(63);
-			match(RADIUS);
-			setState(64);
-			match(EQUALS);
-			setState(65);
-			((CircleStmtContext)_localctx).r = match(NUMBER);
-			setState(66);
-			match(SEMI);
+			setState(91);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(67);
+				match(T__2);
+				setState(68);
+				match(ID);
+				setState(69);
+				match(EQUALS);
+				setState(70);
+				match(CENTER);
+				setState(71);
+				match(LPAREN);
+				setState(72);
+				((CircleStmtContext)_localctx).x = match(NUMBER);
+				setState(73);
+				match(COMMA);
+				setState(74);
+				((CircleStmtContext)_localctx).y = match(NUMBER);
+				setState(75);
+				match(RPAREN);
+				setState(76);
+				match(RADIUS);
+				setState(77);
+				match(EQUALS);
+				setState(78);
+				((CircleStmtContext)_localctx).r = match(NUMBER);
+				setState(79);
+				match(SEMI);
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(80);
+				match(T__2);
+				setState(81);
+				match(ID);
+				setState(82);
+				match(EQUALS);
+				setState(83);
+				match(CENTER);
+				setState(84);
+				match(LPAREN);
+				setState(85);
+				((CircleStmtContext)_localctx).p = match(ID);
+				setState(86);
+				match(RPAREN);
+				setState(87);
+				match(RADIUS);
+				setState(88);
+				match(EQUALS);
+				setState(89);
+				((CircleStmtContext)_localctx).r = match(NUMBER);
+				setState(90);
+				match(SEMI);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -522,15 +599,15 @@ public class GeometryDSLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(68);
+			setState(93);
 			match(ID);
-			setState(69);
+			setState(94);
 			match(LPAREN);
-			setState(70);
+			setState(95);
 			args();
-			setState(71);
+			setState(96);
 			match(RPAREN);
-			setState(72);
+			setState(97);
 			match(SEMI);
 			}
 		}
@@ -583,26 +660,26 @@ public class GeometryDSLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(82);
+			setState(107);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ID || _la==NUMBER) {
 				{
-				setState(74);
+				setState(99);
 				expr();
-				setState(79);
+				setState(104);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==COMMA) {
 					{
 					{
-					setState(75);
+					setState(100);
 					match(COMMA);
-					setState(76);
+					setState(101);
 					expr();
 					}
 					}
-					setState(81);
+					setState(106);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -652,27 +729,27 @@ public class GeometryDSLParser extends Parser {
 		ExprContext _localctx = new ExprContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_expr);
 		try {
-			setState(87);
+			setState(112);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(84);
+				setState(109);
 				match(NUMBER);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(85);
+				setState(110);
 				match(ID);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(86);
+				setState(111);
 				functionCall();
 				}
 				break;
@@ -690,7 +767,7 @@ public class GeometryDSLParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0010Z\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\u0010s\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0001"+
 		"\u0000\u0004\u0000\u0012\b\u0000\u000b\u0000\f\u0000\u0013\u0001\u0001"+
@@ -699,49 +776,63 @@ public class GeometryDSLParser extends Parser {
 		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0003\u0001\u0003\u0001\u0003"+
 		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
 		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
-		"\u0001\u0003\u0001\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
+		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
+		"\u0001\u0003\u0003\u0003B\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004"+
 		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
-		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005"+
-		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006\u0001\u0006"+
-		"\u0001\u0006\u0005\u0006N\b\u0006\n\u0006\f\u0006Q\t\u0006\u0003\u0006"+
-		"S\b\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0003\u0007X\b\u0007\u0001"+
-		"\u0007\u0000\u0000\b\u0000\u0002\u0004\u0006\b\n\f\u000e\u0000\u0000Y"+
-		"\u0000\u0011\u0001\u0000\u0000\u0000\u0002\u0019\u0001\u0000\u0000\u0000"+
-		"\u0004\u001b\u0001\u0000\u0000\u0000\u0006%\u0001\u0000\u0000\u0000\b"+
-		"6\u0001\u0000\u0000\u0000\nD\u0001\u0000\u0000\u0000\fR\u0001\u0000\u0000"+
-		"\u0000\u000eW\u0001\u0000\u0000\u0000\u0010\u0012\u0003\u0002\u0001\u0000"+
-		"\u0011\u0010\u0001\u0000\u0000\u0000\u0012\u0013\u0001\u0000\u0000\u0000"+
-		"\u0013\u0011\u0001\u0000\u0000\u0000\u0013\u0014\u0001\u0000\u0000\u0000"+
-		"\u0014\u0001\u0001\u0000\u0000\u0000\u0015\u001a\u0003\u0004\u0002\u0000"+
-		"\u0016\u001a\u0003\u0006\u0003\u0000\u0017\u001a\u0003\b\u0004\u0000\u0018"+
-		"\u001a\u0003\n\u0005\u0000\u0019\u0015\u0001\u0000\u0000\u0000\u0019\u0016"+
-		"\u0001\u0000\u0000\u0000\u0019\u0017\u0001\u0000\u0000\u0000\u0019\u0018"+
-		"\u0001\u0000\u0000\u0000\u001a\u0003\u0001\u0000\u0000\u0000\u001b\u001c"+
-		"\u0005\u0001\u0000\u0000\u001c\u001d\u0005\u000e\u0000\u0000\u001d\u001e"+
-		"\u0005\u0004\u0000\u0000\u001e\u001f\u0005\u0006\u0000\u0000\u001f \u0005"+
-		"\u000f\u0000\u0000 !\u0005\u0005\u0000\u0000!\"\u0005\u000f\u0000\u0000"+
-		"\"#\u0005\u0007\u0000\u0000#$\u0005\b\u0000\u0000$\u0005\u0001\u0000\u0000"+
-		"\u0000%&\u0005\u0002\u0000\u0000&\'\u0005\u000e\u0000\u0000\'(\u0005\u0004"+
-		"\u0000\u0000()\u0005\t\u0000\u0000)*\u0005\u0006\u0000\u0000*+\u0005\u000f"+
-		"\u0000\u0000+,\u0005\u0005\u0000\u0000,-\u0005\u000f\u0000\u0000-.\u0005"+
-		"\u0007\u0000\u0000./\u0005\n\u0000\u0000/0\u0005\u0006\u0000\u000001\u0005"+
-		"\u000f\u0000\u000012\u0005\u0005\u0000\u000023\u0005\u000f\u0000\u0000"+
-		"34\u0005\u0007\u0000\u000045\u0005\b\u0000\u00005\u0007\u0001\u0000\u0000"+
-		"\u000067\u0005\u0003\u0000\u000078\u0005\u000e\u0000\u000089\u0005\u0004"+
-		"\u0000\u00009:\u0005\u000b\u0000\u0000:;\u0005\u0006\u0000\u0000;<\u0005"+
-		"\u000f\u0000\u0000<=\u0005\u0005\u0000\u0000=>\u0005\u000f\u0000\u0000"+
-		">?\u0005\u0007\u0000\u0000?@\u0005\f\u0000\u0000@A\u0005\u0004\u0000\u0000"+
-		"AB\u0005\u000f\u0000\u0000BC\u0005\b\u0000\u0000C\t\u0001\u0000\u0000"+
-		"\u0000DE\u0005\u000e\u0000\u0000EF\u0005\u0006\u0000\u0000FG\u0003\f\u0006"+
-		"\u0000GH\u0005\u0007\u0000\u0000HI\u0005\b\u0000\u0000I\u000b\u0001\u0000"+
-		"\u0000\u0000JO\u0003\u000e\u0007\u0000KL\u0005\u0005\u0000\u0000LN\u0003"+
-		"\u000e\u0007\u0000MK\u0001\u0000\u0000\u0000NQ\u0001\u0000\u0000\u0000"+
-		"OM\u0001\u0000\u0000\u0000OP\u0001\u0000\u0000\u0000PS\u0001\u0000\u0000"+
-		"\u0000QO\u0001\u0000\u0000\u0000RJ\u0001\u0000\u0000\u0000RS\u0001\u0000"+
-		"\u0000\u0000S\r\u0001\u0000\u0000\u0000TX\u0005\u000f\u0000\u0000UX\u0005"+
-		"\u000e\u0000\u0000VX\u0003\n\u0005\u0000WT\u0001\u0000\u0000\u0000WU\u0001"+
-		"\u0000\u0000\u0000WV\u0001\u0000\u0000\u0000X\u000f\u0001\u0000\u0000"+
-		"\u0000\u0005\u0013\u0019ORW";
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0003\u0004\\\b\u0004\u0001\u0005"+
+		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006"+
+		"\u0001\u0006\u0001\u0006\u0005\u0006g\b\u0006\n\u0006\f\u0006j\t\u0006"+
+		"\u0003\u0006l\b\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0003\u0007"+
+		"q\b\u0007\u0001\u0007\u0000\u0000\b\u0000\u0002\u0004\u0006\b\n\f\u000e"+
+		"\u0000\u0000t\u0000\u0011\u0001\u0000\u0000\u0000\u0002\u0019\u0001\u0000"+
+		"\u0000\u0000\u0004\u001b\u0001\u0000\u0000\u0000\u0006A\u0001\u0000\u0000"+
+		"\u0000\b[\u0001\u0000\u0000\u0000\n]\u0001\u0000\u0000\u0000\fk\u0001"+
+		"\u0000\u0000\u0000\u000ep\u0001\u0000\u0000\u0000\u0010\u0012\u0003\u0002"+
+		"\u0001\u0000\u0011\u0010\u0001\u0000\u0000\u0000\u0012\u0013\u0001\u0000"+
+		"\u0000\u0000\u0013\u0011\u0001\u0000\u0000\u0000\u0013\u0014\u0001\u0000"+
+		"\u0000\u0000\u0014\u0001\u0001\u0000\u0000\u0000\u0015\u001a\u0003\u0004"+
+		"\u0002\u0000\u0016\u001a\u0003\u0006\u0003\u0000\u0017\u001a\u0003\b\u0004"+
+		"\u0000\u0018\u001a\u0003\n\u0005\u0000\u0019\u0015\u0001\u0000\u0000\u0000"+
+		"\u0019\u0016\u0001\u0000\u0000\u0000\u0019\u0017\u0001\u0000\u0000\u0000"+
+		"\u0019\u0018\u0001\u0000\u0000\u0000\u001a\u0003\u0001\u0000\u0000\u0000"+
+		"\u001b\u001c\u0005\u0001\u0000\u0000\u001c\u001d\u0005\u000e\u0000\u0000"+
+		"\u001d\u001e\u0005\u0004\u0000\u0000\u001e\u001f\u0005\u0006\u0000\u0000"+
+		"\u001f \u0005\u000f\u0000\u0000 !\u0005\u0005\u0000\u0000!\"\u0005\u000f"+
+		"\u0000\u0000\"#\u0005\u0007\u0000\u0000#$\u0005\b\u0000\u0000$\u0005\u0001"+
+		"\u0000\u0000\u0000%&\u0005\u0002\u0000\u0000&\'\u0005\u000e\u0000\u0000"+
+		"\'(\u0005\u0004\u0000\u0000()\u0005\t\u0000\u0000)*\u0005\u0006\u0000"+
+		"\u0000*+\u0005\u000f\u0000\u0000+,\u0005\u0005\u0000\u0000,-\u0005\u000f"+
+		"\u0000\u0000-.\u0005\u0007\u0000\u0000./\u0005\n\u0000\u0000/0\u0005\u0006"+
+		"\u0000\u000001\u0005\u000f\u0000\u000012\u0005\u0005\u0000\u000023\u0005"+
+		"\u000f\u0000\u000034\u0005\u0007\u0000\u00004B\u0005\b\u0000\u000056\u0005"+
+		"\u0002\u0000\u000067\u0005\u000e\u0000\u000078\u0005\u0004\u0000\u0000"+
+		"89\u0005\t\u0000\u00009:\u0005\u0006\u0000\u0000:;\u0005\u000e\u0000\u0000"+
+		";<\u0005\u0007\u0000\u0000<=\u0005\n\u0000\u0000=>\u0005\u0006\u0000\u0000"+
+		">?\u0005\u000e\u0000\u0000?@\u0005\u0007\u0000\u0000@B\u0005\b\u0000\u0000"+
+		"A%\u0001\u0000\u0000\u0000A5\u0001\u0000\u0000\u0000B\u0007\u0001\u0000"+
+		"\u0000\u0000CD\u0005\u0003\u0000\u0000DE\u0005\u000e\u0000\u0000EF\u0005"+
+		"\u0004\u0000\u0000FG\u0005\u000b\u0000\u0000GH\u0005\u0006\u0000\u0000"+
+		"HI\u0005\u000f\u0000\u0000IJ\u0005\u0005\u0000\u0000JK\u0005\u000f\u0000"+
+		"\u0000KL\u0005\u0007\u0000\u0000LM\u0005\f\u0000\u0000MN\u0005\u0004\u0000"+
+		"\u0000NO\u0005\u000f\u0000\u0000O\\\u0005\b\u0000\u0000PQ\u0005\u0003"+
+		"\u0000\u0000QR\u0005\u000e\u0000\u0000RS\u0005\u0004\u0000\u0000ST\u0005"+
+		"\u000b\u0000\u0000TU\u0005\u0006\u0000\u0000UV\u0005\u000e\u0000\u0000"+
+		"VW\u0005\u0007\u0000\u0000WX\u0005\f\u0000\u0000XY\u0005\u0004\u0000\u0000"+
+		"YZ\u0005\u000f\u0000\u0000Z\\\u0005\b\u0000\u0000[C\u0001\u0000\u0000"+
+		"\u0000[P\u0001\u0000\u0000\u0000\\\t\u0001\u0000\u0000\u0000]^\u0005\u000e"+
+		"\u0000\u0000^_\u0005\u0006\u0000\u0000_`\u0003\f\u0006\u0000`a\u0005\u0007"+
+		"\u0000\u0000ab\u0005\b\u0000\u0000b\u000b\u0001\u0000\u0000\u0000ch\u0003"+
+		"\u000e\u0007\u0000de\u0005\u0005\u0000\u0000eg\u0003\u000e\u0007\u0000"+
+		"fd\u0001\u0000\u0000\u0000gj\u0001\u0000\u0000\u0000hf\u0001\u0000\u0000"+
+		"\u0000hi\u0001\u0000\u0000\u0000il\u0001\u0000\u0000\u0000jh\u0001\u0000"+
+		"\u0000\u0000kc\u0001\u0000\u0000\u0000kl\u0001\u0000\u0000\u0000l\r\u0001"+
+		"\u0000\u0000\u0000mq\u0005\u000f\u0000\u0000nq\u0005\u000e\u0000\u0000"+
+		"oq\u0003\n\u0005\u0000pm\u0001\u0000\u0000\u0000pn\u0001\u0000\u0000\u0000"+
+		"po\u0001\u0000\u0000\u0000q\u000f\u0001\u0000\u0000\u0000\u0007\u0013"+
+		"\u0019A[hkp";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

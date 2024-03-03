@@ -16,6 +16,13 @@ public class Circle implements IShape {
         this.radius = radius;
     }
 
+    public Circle(String id, Point point, float radius) {
+        this.id = id;
+        this.x = point.getX();
+        this.y = point.getY();
+        this.radius = radius;
+    }
+
     public String getId() {
         return id;
     }

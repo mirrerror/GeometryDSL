@@ -27,9 +27,11 @@ statement : pointStmt
 
 pointStmt : 'point' ID '=' '(' x=NUMBER ',' y=NUMBER ')' ';' ;
 
-lineStmt : 'line' ID '=' 'from' '(' x1=NUMBER ',' y1=NUMBER ')' 'to' '(' x2=NUMBER ',' y2=NUMBER ')' ';' ;
+lineStmt : 'line' ID '=' 'from' '(' x1=NUMBER ',' y1=NUMBER ')' 'to' '(' x2=NUMBER ',' y2=NUMBER ')' ';' |
+           'line' ID '=' 'from' '(' p1=ID ')' 'to' '(' p2=ID ')' ';' ;
 
-circleStmt : 'circle' ID '=' 'center' '(' x=NUMBER ',' y=NUMBER ')' 'radius' '=' r=NUMBER ';' ;
+circleStmt : 'circle' ID '=' 'center' '(' x=NUMBER ',' y=NUMBER ')' 'radius' '=' r=NUMBER ';' |
+             'circle' ID '=' 'center' '(' p=ID ')' 'radius' '=' r=NUMBER ';' ;
 
 functionCall : ID '(' args ')' ';' ;
 
