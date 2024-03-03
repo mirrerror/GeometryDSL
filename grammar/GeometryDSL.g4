@@ -1,8 +1,8 @@
 grammar GeometryDSL;
 
 // Define tokens
-ID       : [a-zA-Z0-9_-]+ ;
-NUMBER   : [+-]?(DIGIT*[.])?DIGIT+ ;
+ID       : [a-zA-Z_\-] [a-zA-Z0-9_-]* ;
+NUMBER   : [0-9]+ ('.' [0-9]+)? ;
 WS       : [ \t\r\n]+ -> skip ;
 
 // Define parser rules
@@ -29,5 +29,3 @@ FROM     : 'from' ;
 TO       : 'to' ;
 CENTER   : 'center' ;
 RADIUS   : 'radius' ;
-
-fragment DIGIT : [0-9] ;
