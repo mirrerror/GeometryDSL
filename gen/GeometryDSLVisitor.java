@@ -39,4 +39,22 @@ public interface GeometryDSLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCircleStmt(GeometryDSLParser.CircleStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GeometryDSLParser#functionCall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionCall(GeometryDSLParser.FunctionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GeometryDSLParser#args}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArgs(GeometryDSLParser.ArgsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GeometryDSLParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpr(GeometryDSLParser.ExprContext ctx);
 }

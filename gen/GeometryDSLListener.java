@@ -56,4 +56,34 @@ public interface GeometryDSLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCircleStmt(GeometryDSLParser.CircleStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCall(GeometryDSLParser.FunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCall(GeometryDSLParser.FunctionCallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#args}.
+	 * @param ctx the parse tree
+	 */
+	void enterArgs(GeometryDSLParser.ArgsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#args}.
+	 * @param ctx the parse tree
+	 */
+	void exitArgs(GeometryDSLParser.ArgsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpr(GeometryDSLParser.ExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpr(GeometryDSLParser.ExprContext ctx);
 }
