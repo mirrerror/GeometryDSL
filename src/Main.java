@@ -32,7 +32,7 @@ public class Main {
                 circle c2 = center(x, y) radius=y;
                 printVariable(c2);
                 a = area(c2);
-                area(c2)
+                area(c2);
                 printVariable(a);
                 e = 2.6;
                 printVariable(e);
