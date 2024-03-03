@@ -1,7 +1,18 @@
 grammar GeometryDSL;
 
 // Define tokens
-ID       : [a-zA-Z_\-] [a-zA-Z0-9_-]* ;
+EQUALS   : '=' ;
+COMMA    : ',' ;
+LPAREN   : '(' ;
+RPAREN   : ')' ;
+SEMI     : ';' ;
+FROM     : 'from' ;
+TO       : 'to' ;
+CENTER   : 'center' ;
+RADIUS   : 'radius' ;
+FUNCTION : 'function' ;
+
+ID       : [a-zA-Z-] [a-zA-Z0-9-]* ;
 NUMBER   : [0-9]+ ('.' [0-9]+)? ;
 WS       : [ \t\r\n]+ -> skip ;
 
@@ -28,20 +39,3 @@ expr : NUMBER
      | ID
      | functionCall // Allow nested function calls
      ;
-
-// Define predefined functions
-distance : 'distance' '(' x1=NUMBER ',' y1=NUMBER ',' x2=NUMBER ',' y2=NUMBER ')' ;
-
-// Define lexer rules for operators
-EQUALS   : '=' ;
-COMMA    : ',' ;
-LPAREN   : '(' ;
-RPAREN   : ')' ;
-SEMI     : ';' ;
-FROM     : 'from' ;
-TO       : 'to' ;
-CENTER   : 'center' ;
-RADIUS   : 'radius' ;
-
-// New lexer rule for function keyword
-FUNCTION : 'function' ;
