@@ -11,6 +11,7 @@ geometry : statement+ ;
 statement : pointStmt
           | lineStmt
           | circleStmt
+          | functionCall
           ;
 
 pointStmt : 'point' ID '=' '(' x=NUMBER ',' y=NUMBER ')' ';' ;
@@ -18,6 +19,18 @@ pointStmt : 'point' ID '=' '(' x=NUMBER ',' y=NUMBER ')' ';' ;
 lineStmt : 'line' ID '=' 'from' '(' x1=NUMBER ',' y1=NUMBER ')' 'to' '(' x2=NUMBER ',' y2=NUMBER ')' ';' ;
 
 circleStmt : 'circle' ID '=' 'center' '(' x=NUMBER ',' y=NUMBER ')' 'radius' '=' r=NUMBER ';' ;
+
+functionCall : ID '(' args ')' ';' ;
+
+args : (expr (',' expr)*)? ;
+
+expr : NUMBER
+     | ID
+     | functionCall // Allow nested function calls
+     ;
+
+// Define predefined functions
+distance : 'distance' '(' x1=NUMBER ',' y1=NUMBER ',' x2=NUMBER ',' y2=NUMBER ')' ;
 
 // Define lexer rules for operators
 EQUALS   : '=' ;
@@ -29,3 +42,6 @@ FROM     : 'from' ;
 TO       : 'to' ;
 CENTER   : 'center' ;
 RADIUS   : 'radius' ;
+
+// New lexer rule for function keyword
+FUNCTION : 'function' ;
