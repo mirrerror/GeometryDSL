@@ -16,8 +16,8 @@ public class Main {
     private static final Map<String, Object> variables = new HashMap<>();
 
     public static void main(String[] args) throws IOException {
-        CharStream charStream = CharStreams.fromFileName("./test.geo");
-//        CharStream charStream = CharStreams.fromFileName("./" + args[0] + ".geo");
+//        CharStream charStream = CharStreams.fromFileName("./test.geo");
+        CharStream charStream = CharStreams.fromFileName("./" + args[0] + ".geo");
 
         GeometryDSLLexer lexer = new GeometryDSLLexer(charStream);
         GeometryDSLParser parser = new GeometryDSLParser(new CommonTokenStream(lexer));
