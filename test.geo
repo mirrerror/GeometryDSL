@@ -23,7 +23,7 @@ e = 2.6;
 print(e);
 
 i = 0;
-while(i < 3) {
+while(i < 24) {
     print(i);
-    i = 4;
+    i = i + 8;
 }

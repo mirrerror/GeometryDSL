@@ -1,11 +1,10 @@
 package geometrydsl;
 
-import geometrydsl.utils.ExpressionManager;
+import geometrydsl.visitors.GeometryVisitor;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import geometrydsl.visitors.GeometryVisitor;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,7 +22,7 @@ public class Main {
         GeometryDSLParser parser = new GeometryDSLParser(new CommonTokenStream(lexer));
         ParseTree parseTree = parser.geometry();
 
-        GeometryVisitor geometryVisitor = new GeometryVisitor(new ExpressionManager());
+        GeometryVisitor geometryVisitor = new GeometryVisitor();
         geometryVisitor.visit(parseTree);
     }
 
