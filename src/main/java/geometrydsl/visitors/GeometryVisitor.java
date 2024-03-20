@@ -122,4 +122,22 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
         return visitChildren(ctx);
     }
 
+    @Override public Object visitForLoop(GeometryDSLParser.ForLoopContext ctx) {
+
+
+
+        return visitChildren(ctx);
+    }
+
+    @Override public Object visitWhileLoop(GeometryDSLParser.WhileLoopContext ctx) {
+
+        boolean condition = (boolean) expressionManager.getValue(ctx.expr(), this);
+        while(condition) {
+            expressionManager.visitStatement(ctx.statement(), this);
+            condition = (boolean) expressionManager.getValue(ctx.expr(), this);
+        }
+
+        return visitChildren(ctx);
+    }
+
 }

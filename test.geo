@@ -21,3 +21,5 @@ print(area(c2));
 printVariable(a);
 e = 2.6;
 printVariable(e);
+j = x + 1;
+printVariable(j);
