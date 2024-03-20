@@ -22,11 +22,12 @@ DIVIDE=21
 GREATER=22
 LESS=23
 EQUAL=24
-GREATER_EQ=25
-LESS_EQ=26
-ID=27
-NUMBER=28
-WS=29
+NOT_EQUAL=25
+GREATER_EQ=26
+LESS_EQ=27
+ID=28
+NUMBER=29
+WS=30
 'point'=1
 'line'=2
 'circle'=3
@@ -51,5 +52,6 @@ WS=29
 '>'=22
 '<'=23
 '=='=24
-'>='=25
-'<='=26
+'!='=25
+'>='=26
+'<='=27

@@ -5,21 +5,25 @@ circle c1 = center(p1) radius=5;
 point p3 = (5, 6);
 print(distance(p1, p2));
 print(distance(p1, p3));
-printVariable(p1);
+print(p1);
 x = 5;
 y = 7;
-printVariable(x);
-printVariable(y);
+print(x);
+print(y);
 point p3 = (x, y);
-printVariable(p3);
+print(p3);
 line l2 = from (x, y) to (x, y);
-printVariable(l2);
+print(l2);
 circle c2 = center(x, y) radius=y;
-printVariable(c2);
+print(c2);
 a = area(c2);
 print(area(c2));
-printVariable(a);
+print(a);
 e = 2.6;
-printVariable(e);
-j = x + 1;
-printVariable(j);
+print(e);
+
+i = 0;
+while(i < 3) {
+    print(i);
+    i = 4;
+}

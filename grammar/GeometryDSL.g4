@@ -22,6 +22,7 @@ DIVIDE      : '/' ;
 GREATER     : '>' ;
 LESS        : '<' ;
 EQUAL       : '==' ;
+NOT_EQUAL   : '!=' ;
 GREATER_EQ  : '>=' ;
 LESS_EQ     : '<=' ;
 
@@ -34,6 +35,8 @@ geometry     : statement+ ;
 
 statement    : singleStatement
              | blockStatement
+             | forLoop
+             | whileLoop
              ;
 
 singleStatement   : (pointStmt
@@ -41,8 +44,6 @@ singleStatement   : (pointStmt
              | circleStmt
              | functionCall
              | assignStmt
-             | forLoop
-             | whileLoop
              | expr)
              ';'
              ;
@@ -67,9 +68,10 @@ expr         : NUMBER
              | ID
              | functionCall
              | expr (PLUS | MINUS | MULTIPLY | DIVIDE) expr
-             | expr (GREATER | LESS | EQUAL | GREATER_EQ | LESS_EQ) expr
              ;
 
-forLoop      : 'for' LPAREN init=assignStmt SEMI condition=expr SEMI update=assignStmt RPAREN statement ;
+booleanExpr  : expr (GREATER | LESS | EQUAL | NOT_EQUAL | GREATER_EQ | LESS_EQ) expr ;
 
-whileLoop    : 'while' LPAREN condition=expr RPAREN statement ;
+forLoop      : 'for' LPAREN init=assignStmt SEMI condition=booleanExpr SEMI update=assignStmt RPAREN statement ;
+
+whileLoop    : 'while' LPAREN condition=booleanExpr RPAREN statement ;

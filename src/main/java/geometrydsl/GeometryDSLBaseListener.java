@@ -1,4 +1,4 @@
-package geometrydsl;// Generated from D:/IdeaProjects/GeometryDSL/grammar/GeometryDSL.g4 by ANTLR 4.13.1
+package geometrydsl;// Generated from D:/MyIdeaProjects2023/GeometryDSL/grammar/GeometryDSL.g4 by ANTLR 4.13.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -143,6 +143,18 @@ public class GeometryDSLBaseListener implements GeometryDSLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpr(GeometryDSLParser.ExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBooleanExpr(GeometryDSLParser.BooleanExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBooleanExpr(GeometryDSLParser.BooleanExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

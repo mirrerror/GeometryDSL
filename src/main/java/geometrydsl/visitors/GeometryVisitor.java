@@ -84,12 +84,16 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
                 Shape shape2 = (Shape) Main.getVariables().get(ctx.args().expr(1).ID().getText());
                 return shape1.calculateDistance(shape2);
             }
-            case "printVariable" -> {
-                System.out.println(Main.getVariables().get(ctx.args().expr(0).ID().getText()));
-                return (Float) visitChildren(ctx);
-            }
             case "print" -> {
-                System.out.println(visitFunctionCall(ctx.args().expr(0).functionCall()));
+                GeometryDSLParser.ExprContext expr = ctx.args().expr(0);
+                if(expr.ID() != null) {
+                    System.out.println(Main.getVariables().get(expr.ID().getText()));
+                } else if(expr.NUMBER() != null) {
+                    System.out.println(Float.parseFloat(expr.NUMBER().getText()));
+                } else if(expr.functionCall() != null) {
+                    System.out.println(visitFunctionCall(expr.functionCall()));
+                }
+
                 return (Float) visitChildren(ctx);
             }
             case "area" -> {
@@ -131,10 +135,10 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
     @Override public Object visitWhileLoop(GeometryDSLParser.WhileLoopContext ctx) {
 
-        boolean condition = (boolean) expressionManager.getValue(ctx.expr(), this);
+        boolean condition = (boolean) expressionManager.getValue(ctx, this);
         while(condition) {
             expressionManager.visitStatement(ctx.statement(), this);
-            condition = (boolean) expressionManager.getValue(ctx.expr(), this);
+            condition = (boolean) expressionManager.getValue(ctx, this);
         }
 
         return visitChildren(ctx);

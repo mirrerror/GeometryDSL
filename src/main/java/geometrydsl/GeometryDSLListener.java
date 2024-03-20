@@ -1,4 +1,4 @@
-package geometrydsl;// Generated from D:/IdeaProjects/GeometryDSL/grammar/GeometryDSL.g4 by ANTLR 4.13.1
+package geometrydsl;// Generated from D:/MyIdeaProjects2023/GeometryDSL/grammar/GeometryDSL.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -116,6 +116,16 @@ public interface GeometryDSLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr(GeometryDSLParser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#booleanExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanExpr(GeometryDSLParser.BooleanExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#booleanExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanExpr(GeometryDSLParser.BooleanExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GeometryDSLParser#forLoop}.
 	 * @param ctx the parse tree
