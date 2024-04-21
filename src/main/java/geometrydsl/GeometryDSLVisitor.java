@@ -70,6 +70,12 @@ public interface GeometryDSLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRectangleStmt(GeometryDSLParser.RectangleStmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GeometryDSLParser#polygonStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPolygonStmt(GeometryDSLParser.PolygonStmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GeometryDSLParser#functionCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

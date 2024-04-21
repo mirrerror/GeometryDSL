@@ -13,6 +13,7 @@ LINE        : 'line' ;
 CIRCLE      : 'circle' ;
 TRIANGLE    : 'triangle' ;
 RECTANGLE   : 'rectangle' ;
+POLYGON     : 'polygon' ;
 FROM        : 'from' ;
 TO          : 'to' ;
 CENTER      : 'center' ;
@@ -52,6 +53,7 @@ singleStatement   : (pointStmt
              | circleStmt
              | triangleStmt
              | rectangleStmt
+             | polygonStmt
              | functionCall
              | assignStmt
              | expr)
@@ -75,6 +77,9 @@ triangleStmt : TRIANGLE ID EQUALS LPAREN e1=expr COMMA e2=expr COMMA e3=expr COM
 
 rectangleStmt: RECTANGLE ID EQUALS LPAREN e1=expr COMMA e2=expr COMMA e3=expr COMMA e4=expr RPAREN |
                RECTANGLE ID EQUALS LPAREN p=ID COMMA e1=expr COMMA e2=expr RPAREN ;
+
+polygonStmt  : POLYGON ID EQUALS LPAREN expr COMMA expr (COMMA expr COMMA expr)* RPAREN |
+               POLYGON ID EQUALS LPAREN ID (COMMA ID)* RPAREN ;
 
 functionCall : ID LPAREN args RPAREN ;
 

@@ -65,7 +65,16 @@ public class FigureManager {
         fxTriangle.setStroke(Color.BLACK);
         fxTriangle.setFill(Color.WHITE);
         addFigure(root, fxTriangle);
+    }
 
+    public void addPolygon(Group root, geometrydsl.models.Polygon polygon) {
+        Polygon fxPolygon = new Polygon();
+        for (geometrydsl.models.CoordinateVector point : polygon.getPolygonPoints()) {
+            fxPolygon.getPoints().addAll((double) point.getX(), (double) point.getY());
+        }
+        fxPolygon.setStroke(Color.BLACK);
+        fxPolygon.setFill(Color.WHITE);
+        addFigure(root, fxPolygon);
     }
 
 }

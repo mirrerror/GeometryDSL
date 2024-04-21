@@ -120,6 +120,16 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
     }
 
     @Override
+    public Object visitPolygonStmt(GeometryDSLParser.PolygonStmtContext ctx) {
+        Polygon polygon = null;
+
+        String id = ctx.ID().get(0).getText();
+
+        Main.getVariables().put(id, polygon);
+        return visitChildren(ctx);
+    }
+
+    @Override
     public Float visitFunctionCall(GeometryDSLParser.FunctionCallContext ctx) {
         String functionName = ctx.ID().getText();
 

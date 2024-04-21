@@ -107,6 +107,16 @@ public interface GeometryDSLListener extends ParseTreeListener {
 	 */
 	void exitRectangleStmt(GeometryDSLParser.RectangleStmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GeometryDSLParser#polygonStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterPolygonStmt(GeometryDSLParser.PolygonStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GeometryDSLParser#polygonStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitPolygonStmt(GeometryDSLParser.PolygonStmtContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GeometryDSLParser#functionCall}.
 	 * @param ctx the parse tree
 	 */

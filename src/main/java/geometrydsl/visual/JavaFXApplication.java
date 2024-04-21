@@ -30,6 +30,8 @@ public class JavaFXApplication extends Application {
                 figureManager.addTriangle(root, (geometrydsl.models.Triangle) shape);
             } else if(shape instanceof geometrydsl.models.Rectangle) {
                 figureManager.addRectangle(root, (geometrydsl.models.Rectangle) shape);
+            } else if(shape instanceof geometrydsl.models.Polygon) {
+                figureManager.addPolygon(root, (geometrydsl.models.Polygon) shape);
             }
         });
 

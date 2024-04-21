@@ -136,6 +136,18 @@ public class GeometryDSLBaseListener implements GeometryDSLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPolygonStmt(GeometryDSLParser.PolygonStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPolygonStmt(GeometryDSLParser.PolygonStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunctionCall(GeometryDSLParser.FunctionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
