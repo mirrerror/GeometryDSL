@@ -27,6 +27,7 @@ while(i < 24) {
     print(i);
 }
 
+e = 2.66;
 if(i == 24) {
     print(i);
 } else {
