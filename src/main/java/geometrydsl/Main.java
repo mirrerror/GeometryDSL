@@ -1,6 +1,8 @@
 package geometrydsl;
 
 import geometrydsl.visitors.GeometryVisitor;
+import geometrydsl.visual.JavaFXApplication;
+import javafx.application.Application;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -24,6 +26,8 @@ public class Main {
 
         GeometryVisitor geometryVisitor = new GeometryVisitor();
         geometryVisitor.visit(parseTree);
+
+        Application.launch(JavaFXApplication.class, args);
     }
 
     public static Map<String, Object> getVariables() {
