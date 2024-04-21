@@ -6,6 +6,7 @@ public class Rectangle extends Shape{
     private float y;
     private float width;
     private float height;
+
     public Rectangle(String id, float x, float y, float width, float height) {
         super(id);
         this.x = x;
@@ -13,6 +14,7 @@ public class Rectangle extends Shape{
         this.width = width;
         this.height = height;
     }
+
     public Rectangle(String id, Point point, float width, float height) {
         super(id);
         this.x = point.getX();

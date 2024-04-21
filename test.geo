@@ -14,6 +14,11 @@ print(p3);
 line l2 = from (x, y) to (x, y);
 print(l2);
 
+rectangle r1 = (p1, 100, 200);
+print(r1);
+triangle t1 = (p1, p2, p3);
+print(t1);
+
 i = 0;
 while(i < 24) {
     i = i + 8;

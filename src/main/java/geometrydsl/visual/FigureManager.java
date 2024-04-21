@@ -43,23 +43,27 @@ public class FigureManager {
         circle.setFill(Color.BLACK);
         addFigure(root, circle);
     }
-    public void addRectangle(Group root, geometrydsl.models.Rectangle rectangle){
+
+    public void addRectangle(Group root, geometrydsl.models.Rectangle rectangle) {
         Rectangle fxRectangle = new Rectangle();
         fxRectangle.setX(rectangle.getX());
         fxRectangle.setY(rectangle.getY());
         fxRectangle.setHeight(rectangle.getHeight());
         fxRectangle.setWidth(rectangle.getWidth());
-        fxRectangle.setFill(Color.BLACK);
+        fxRectangle.setStroke(Color.BLACK);
+        fxRectangle.setFill(Color.WHITE);
         addFigure(root, fxRectangle);
     }
-    public void addTriangle(Group root, geometrydsl.models.Triangle triangle){
+
+    public void addTriangle(Group root, geometrydsl.models.Triangle triangle) {
         Polygon fxTriangle = new Polygon();
         fxTriangle.getPoints().setAll(
-                (double)triangle.getX1(), (double)triangle.getY1(),
-                (double)triangle.getX2(), (double)triangle.getY2(),
-                (double)triangle.getX3(), (double)triangle.getY3()
+                (double) triangle.getX1(), (double) triangle.getY1(),
+                (double) triangle.getX2(), (double) triangle.getY2(),
+                (double) triangle.getX3(), (double) triangle.getY3()
         );
-        fxTriangle.setFill(Color.BLACK);
+        fxTriangle.setStroke(Color.BLACK);
+        fxTriangle.setFill(Color.WHITE);
         addFigure(root, fxTriangle);
 
     }

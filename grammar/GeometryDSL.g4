@@ -11,6 +11,8 @@ SEMI        : ';' ;
 POINT       : 'point' ;
 LINE        : 'line' ;
 CIRCLE      : 'circle' ;
+TRIANGLE    : 'triangle' ;
+RECTANGLE   : 'rectangle' ;
 FROM        : 'from' ;
 TO          : 'to' ;
 CENTER      : 'center' ;
@@ -48,6 +50,8 @@ statement    : singleStatement
 singleStatement   : (pointStmt
              | lineStmt
              | circleStmt
+             | triangleStmt
+             | rectangleStmt
              | functionCall
              | assignStmt
              | expr)
@@ -65,6 +69,12 @@ lineStmt     : LINE ID EQUALS FROM LPAREN e1=expr COMMA e2=expr RPAREN TO LPAREN
 
 circleStmt   : CIRCLE ID EQUALS CENTER LPAREN e1=expr COMMA e2=expr RPAREN RADIUS EQUALS r=expr |
                CIRCLE ID EQUALS CENTER LPAREN p=ID RPAREN RADIUS EQUALS r=expr ;
+
+triangleStmt : TRIANGLE ID EQUALS LPAREN e1=expr COMMA e2=expr COMMA e3=expr COMMA e4=expr COMMA e5=expr COMMA e6=expr RPAREN |
+               TRIANGLE ID EQUALS LPAREN p1=ID COMMA p2=ID COMMA p3=ID RPAREN ;
+
+rectangleStmt: RECTANGLE ID EQUALS LPAREN e1=expr COMMA e2=expr COMMA e3=expr COMMA e4=expr RPAREN |
+               RECTANGLE ID EQUALS LPAREN p=ID COMMA e1=expr COMMA e2=expr RPAREN ;
 
 functionCall : ID LPAREN args RPAREN ;
 

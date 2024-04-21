@@ -18,6 +18,16 @@ public class Triangle extends Shape {
         this.y3 = y3;
     }
 
+    public Triangle(String id, Point p1, Point p2, Point p3) {
+        super(id);
+        this.x1 = p1.getX();
+        this.y1 = p1.getY();
+        this.x2 = p2.getX();
+        this.y2 = p2.getY();
+        this.x3 = p3.getX();
+        this.y3 = p3.getY();
+    }
+
     public float getX1() {
         return x1;
     }
@@ -64,6 +74,19 @@ public class Triangle extends Shape {
 
     public void setY3(float y3) {
         this.y3 = y3;
+    }
+
+    @Override
+    public String toString() {
+        return "Triangle{" +
+                "id='" + getId() + '\'' +
+                ", x1=" + x1 +
+                ", y1=" + y1 +
+                ", x2=" + x2 +
+                ", y2=" + y2 +
+                ", x3=" + x3 +
+                ", y3=" + y3 +
+                '}';
     }
 
     @Override

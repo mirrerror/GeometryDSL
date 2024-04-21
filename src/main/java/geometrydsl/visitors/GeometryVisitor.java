@@ -3,10 +3,7 @@ package geometrydsl.visitors;
 import geometrydsl.GeometryDSLBaseVisitor;
 import geometrydsl.GeometryDSLParser;
 import geometrydsl.Main;
-import geometrydsl.models.Circle;
-import geometrydsl.models.Line;
-import geometrydsl.models.Point;
-import geometrydsl.models.Shape;
+import geometrydsl.models.*;
 import geometrydsl.utils.ExpressionManager;
 
 public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
@@ -71,6 +68,54 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
         }
 
         Main.getVariables().put(id, circle);
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public Object visitTriangleStmt(GeometryDSLParser.TriangleStmtContext ctx) {
+        Triangle triangle;
+
+        String id = ctx.ID().get(0).getText();
+
+        if(ctx.p1 != null) {
+            Point p1 = (Point) Main.getVariables().get(ctx.p1.getText());
+            Point p2 = (Point) Main.getVariables().get(ctx.p2.getText());
+            Point p3 = (Point) Main.getVariables().get(ctx.p3.getText());
+            triangle = new Triangle(id, p1, p2, p3);
+        } else {
+            Float x1 = (Float) expressionManager.getValue(ctx.e1);
+            Float y1 = (Float) expressionManager.getValue(ctx.e2);
+            Float x2 = (Float) expressionManager.getValue(ctx.e3);
+            Float y2 = (Float) expressionManager.getValue(ctx.e4);
+            Float x3 = (Float) expressionManager.getValue(ctx.e5);
+            Float y3 = (Float) expressionManager.getValue(ctx.e6);
+            triangle = new Triangle(id, x1, y1, x2, y2, x3, y3);
+        }
+
+        Main.getVariables().put(id, triangle);
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public Object visitRectangleStmt(GeometryDSLParser.RectangleStmtContext ctx) {
+        Rectangle rectangle;
+
+        String id = ctx.ID().get(0).getText();
+
+        if(ctx.p != null) {
+            Point p = (Point) Main.getVariables().get(ctx.p.getText());
+            Float width = (Float) expressionManager.getValue(ctx.e1);
+            Float height = (Float) expressionManager.getValue(ctx.e2);
+            rectangle = new Rectangle(id, p, width, height);
+        } else {
+            Float x = (Float) expressionManager.getValue(ctx.e1);
+            Float y = (Float) expressionManager.getValue(ctx.e2);
+            Float width = (Float) expressionManager.getValue(ctx.e3);
+            Float height = (Float) expressionManager.getValue(ctx.e4);
+            rectangle = new Rectangle(id, x, y, width, height);
+        }
+
+        Main.getVariables().put(id, rectangle);
         return visitChildren(ctx);
     }
 
