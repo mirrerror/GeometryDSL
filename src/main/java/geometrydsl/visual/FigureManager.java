@@ -2,9 +2,7 @@ package geometrydsl.visual;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.*;
 
 public class FigureManager {
 
@@ -44,6 +42,26 @@ public class FigureManager {
         circle.setStroke(Color.BLACK);
         circle.setFill(Color.BLACK);
         addFigure(root, circle);
+    }
+    public void addRectangle(Group root, geometrydsl.models.Rectangle rectangle){
+        Rectangle fxRectangle = new Rectangle();
+        fxRectangle.setX(rectangle.getX());
+        fxRectangle.setY(rectangle.getY());
+        fxRectangle.setHeight(rectangle.getHeight());
+        fxRectangle.setWidth(rectangle.getWidth());
+        fxRectangle.setFill(Color.BLACK);
+        addFigure(root, fxRectangle);
+    }
+    public void addTriangle(Group root, geometrydsl.models.Triangle triangle){
+        Polygon fxTriangle = new Polygon();
+        fxTriangle.getPoints().setAll(
+                (double)triangle.getX1(), (double)triangle.getY1(),
+                (double)triangle.getX2(), (double)triangle.getY2(),
+                (double)triangle.getX3(), (double)triangle.getY3()
+        );
+        fxTriangle.setFill(Color.BLACK);
+        addFigure(root, fxTriangle);
+
     }
 
 }

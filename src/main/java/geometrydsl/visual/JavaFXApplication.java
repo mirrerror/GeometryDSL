@@ -26,6 +26,10 @@ public class JavaFXApplication extends Application {
                 figureManager.addCircle(root, (geometrydsl.models.Circle) shape);
             } else if(shape instanceof geometrydsl.models.Point) {
                 figureManager.addPoint(root, (geometrydsl.models.Point) shape);
+            } else if(shape instanceof geometrydsl.models.Triangle) {
+                figureManager.addTriangle(root, (geometrydsl.models.Triangle) shape);
+            } else if(shape instanceof geometrydsl.models.Rectangle) {
+                figureManager.addRectangle(root, (geometrydsl.models.Rectangle) shape);
             }
         });
 
