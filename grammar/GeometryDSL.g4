@@ -1,6 +1,6 @@
 grammar GeometryDSL;
 
-// Define tokens
+// Tokens
 EQUALS      : '=' ;
 COMMA       : ',' ;
 LPAREN      : '(' ;
@@ -8,6 +8,9 @@ RPAREN      : ')' ;
 LBRACE      : '{' ;
 RBRACE      : '}' ;
 SEMI        : ';' ;
+POINT       : 'point' ;
+LINE        : 'line' ;
+CIRCLE      : 'circle' ;
 FROM        : 'from' ;
 TO          : 'to' ;
 CENTER      : 'center' ;
@@ -15,6 +18,8 @@ RADIUS      : 'radius' ;
 FUNCTION    : 'function' ;
 FOR         : 'for' ;
 WHILE       : 'while' ;
+IF          : 'if' ;
+ELSE        : 'else' ;
 PLUS        : '+' ;
 MINUS       : '-' ;
 MULTIPLY    : '*' ;
@@ -30,7 +35,7 @@ ID          : [a-zA-Z-] [a-zA-Z0-9-]* ;
 NUMBER      : [0-9]+ ('.' [0-9]+)? ;
 WS          : [ \t\r\n]+ -> skip ;
 
-// Define parser rules
+// Parser rules
 geometry     : statement+ ;
 
 statement    : singleStatement
@@ -46,20 +51,20 @@ singleStatement   : (pointStmt
              | functionCall
              | assignStmt
              | expr)
-             ';'
+             SEMI
              ;
 
 blockStatement    : LBRACE statement* RBRACE ;
 
 assignStmt   : ID EQUALS expr ;
 
-pointStmt    : 'point' ID EQUALS LPAREN x=expr COMMA y=expr RPAREN ;
+pointStmt    : POINT ID EQUALS LPAREN x=expr COMMA y=expr RPAREN ;
 
-lineStmt     : 'line' ID EQUALS 'from' LPAREN e1=expr COMMA e2=expr RPAREN 'to' LPAREN e3=expr COMMA e4=expr RPAREN |
-               'line' ID EQUALS 'from' LPAREN p1=ID RPAREN 'to' LPAREN p2=ID RPAREN ;
+lineStmt     : LINE ID EQUALS FROM LPAREN e1=expr COMMA e2=expr RPAREN TO LPAREN e3=expr COMMA e4=expr RPAREN |
+               LINE ID EQUALS FROM LPAREN p1=ID RPAREN TO LPAREN p2=ID RPAREN ;
 
-circleStmt   : 'circle' ID EQUALS 'center' LPAREN e1=expr COMMA e2=expr RPAREN 'radius' EQUALS r=expr |
-               'circle' ID EQUALS 'center' LPAREN p=ID RPAREN 'radius' EQUALS r=expr ;
+circleStmt   : CIRCLE ID EQUALS CENTER LPAREN e1=expr COMMA e2=expr RPAREN RADIUS EQUALS r=expr |
+               CIRCLE ID EQUALS CENTER LPAREN p=ID RPAREN RADIUS EQUALS r=expr ;
 
 functionCall : ID LPAREN args RPAREN ;
 
@@ -73,8 +78,8 @@ expr         : NUMBER
 
 booleanExpr  : expr (GREATER | LESS | EQUAL | NOT_EQUAL | GREATER_EQ | LESS_EQ) expr ;
 
-forLoop      : 'for' LPAREN init=assignStmt SEMI condition=booleanExpr SEMI update=assignStmt RPAREN statement ;
+forLoop      : FOR LPAREN init=assignStmt SEMI condition=booleanExpr SEMI update=assignStmt RPAREN statement ;
 
-whileLoop    : 'while' LPAREN condition=booleanExpr RPAREN statement ;
+whileLoop    : WHILE LPAREN condition=booleanExpr RPAREN statement ;
 
-ifStmt       : 'if' LPAREN condition=booleanExpr RPAREN statement ('else' statement)? ;
+ifStmt       : IF LPAREN condition=booleanExpr RPAREN statement (ELSE statement)? ;
