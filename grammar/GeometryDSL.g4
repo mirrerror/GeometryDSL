@@ -37,6 +37,7 @@ statement    : singleStatement
              | blockStatement
              | forLoop
              | whileLoop
+             | ifStmt
              ;
 
 singleStatement   : (pointStmt
@@ -75,3 +76,5 @@ booleanExpr  : expr (GREATER | LESS | EQUAL | NOT_EQUAL | GREATER_EQ | LESS_EQ) 
 forLoop      : 'for' LPAREN init=assignStmt SEMI condition=booleanExpr SEMI update=assignStmt RPAREN statement ;
 
 whileLoop    : 'while' LPAREN condition=booleanExpr RPAREN statement ;
+
+ifStmt       : 'if' LPAREN condition=booleanExpr RPAREN statement ('else' statement)? ;

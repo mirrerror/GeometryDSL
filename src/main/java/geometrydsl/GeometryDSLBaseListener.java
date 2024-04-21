@@ -179,6 +179,18 @@ public class GeometryDSLBaseListener implements GeometryDSLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitWhileLoop(GeometryDSLParser.WhileLoopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIfStmt(GeometryDSLParser.IfStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIfStmt(GeometryDSLParser.IfStmtContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

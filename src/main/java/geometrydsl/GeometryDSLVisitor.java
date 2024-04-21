@@ -93,4 +93,10 @@ public interface GeometryDSLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitWhileLoop(GeometryDSLParser.WhileLoopContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GeometryDSLParser#ifStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfStmt(GeometryDSLParser.IfStmtContext ctx);
 }

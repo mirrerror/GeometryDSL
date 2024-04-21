@@ -24,6 +24,16 @@ print(e);
 
 i = 0;
 while(i < 24) {
-    print(i);
     i = i + 8;
+    print(i);
+}
+
+if(i == 24) {
+    print(i);
+} else {
+    print(e);
+}
+
+for(i = 1; i <= 10; i = i + 1) {
+    print(i);
 }

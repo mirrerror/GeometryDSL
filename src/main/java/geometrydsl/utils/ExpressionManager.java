@@ -148,8 +148,6 @@ public class ExpressionManager {
 
         float operand1 = (float) getValue(ctx.condition.expr(0));
         float operand2 = (float) getValue(ctx.condition.expr(1));
-        System.out.println("operand1 = " + operand1);
-        System.out.println("operand2 = " + operand2);
 
         if(booleanOperator != null) {
             switch(booleanOperator.getText()) {
@@ -169,6 +167,46 @@ public class ExpressionManager {
         }
 
 
+
+        return null;
+    }
+
+    public Object getValue(GeometryDSLParser.IfStmtContext ctx) {
+        TerminalNode booleanOperator = null;
+
+        if(ctx.condition.LESS_EQ() != null) {
+            booleanOperator = ctx.condition.LESS_EQ();
+        } else if(ctx.condition.LESS() != null) {
+            booleanOperator = ctx.condition.LESS();
+        } else if(ctx.condition.GREATER_EQ() != null) {
+            booleanOperator = ctx.condition.GREATER_EQ();
+        } else if(ctx.condition.GREATER() != null) {
+            booleanOperator = ctx.condition.GREATER();
+        } else if(ctx.condition.EQUAL() != null) {
+            booleanOperator = ctx.condition.EQUAL();
+        } else if(ctx.condition.NOT_EQUAL() != null) {
+            booleanOperator = ctx.condition.NOT_EQUAL();
+        }
+
+        float operand1 = (float) getValue(ctx.condition.expr(0));
+        float operand2 = (float) getValue(ctx.condition.expr(1));
+
+        if(booleanOperator != null) {
+            switch(booleanOperator.getText()) {
+                case "<":
+                    return operand1 < operand2;
+                case "<=":
+                    return operand1 <= operand2;
+                case ">":
+                    return operand1 > operand2;
+                case ">=":
+                    return operand1 >= operand2;
+                case "==":
+                    return operand1 == operand2;
+                case "!=":
+                    return operand1 != operand2;
+            }
+        }
 
         return null;
     }

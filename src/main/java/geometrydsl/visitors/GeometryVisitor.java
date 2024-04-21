@@ -131,17 +131,17 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
     }
 
     @Override public Object visitForLoop(GeometryDSLParser.ForLoopContext ctx) {
+        visitAssignStmt(ctx.init);
+
         boolean condition = (boolean) expressionManager.getValue(ctx);
-        boolean hasPassedInit = false;
-        int i = 0;
         for(;condition;) {
-            expressionManager.visitStatement(ctx.statement());
             condition = (boolean) expressionManager.getValue(ctx);
-            visitAssignStmt(ctx.assignStmt().get(0));
-            i = ((Float) Main.getVariables().get(ctx.assignStmt().get(0).ID().getText())).intValue();
+            if(!condition) break;
+            expressionManager.visitStatement(ctx.statement());
+            visitAssignStmt(ctx.assignStmt().get(1));
         }
 
-        return visitChildren(ctx);
+        return null;
     }
 
     @Override public Object visitWhileLoop(GeometryDSLParser.WhileLoopContext ctx) {
@@ -152,7 +152,18 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
             expressionManager.visitStatement(ctx.statement());
         }
 
-        return visitChildren(ctx);
+        return null;
+    }
+
+    @Override public Object visitIfStmt(GeometryDSLParser.IfStmtContext ctx) {
+        boolean condition = (boolean) expressionManager.getValue(ctx);
+        if(condition) {
+            expressionManager.visitStatement(ctx.statement(0));
+        } else {
+            expressionManager.visitStatement(ctx.statement(1));
+        }
+
+        return null;
     }
 
 }
