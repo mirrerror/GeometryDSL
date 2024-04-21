@@ -1,17 +1,14 @@
 package geometrydsl.models;
 
-import java.util.Objects;
-
 public class Line extends Shape {
 
-    private String id;
     private float x1;
     private float y1;
     private float x2;
     private float y2;
 
     public Line(String id, float x1, float y1, float x2, float y2) {
-        this.id = id;
+        super(id);
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -19,19 +16,11 @@ public class Line extends Shape {
     }
 
     public Line(String id, Point point1, Point point2) {
-        this.id = id;
+        super(id);
         this.x1 = point1.getX();
         this.y1 = point1.getY();
         this.x2 = point2.getX();
         this.y2 = point2.getY();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public float getX1() {
@@ -67,22 +56,9 @@ public class Line extends Shape {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line line = (Line) o;
-        return Objects.equals(id, line.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
     public String toString() {
         return "Line{" +
-                "id='" + id + '\'' +
+                "id='" + getId() + '\'' +
                 ", x1=" + x1 +
                 ", y1=" + y1 +
                 ", x2=" + x2 +
