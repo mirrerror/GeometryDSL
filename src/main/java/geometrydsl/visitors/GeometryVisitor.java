@@ -13,8 +13,8 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
     private final ExpressionManager expressionManager;
 
-    public GeometryVisitor(ExpressionManager expressionManager) {
-        this.expressionManager = expressionManager;
+    public GeometryVisitor() {
+        this.expressionManager = new ExpressionManager(this);
     }
 
     @Override
@@ -23,8 +23,8 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
         Point point;
 
-        Float x = (Float) expressionManager.getValue(ctx.x, this);
-        Float y = (Float) expressionManager.getValue(ctx.y, this);
+        Float x = (Float) expressionManager.getValue(ctx.x);
+        Float y = (Float) expressionManager.getValue(ctx.y);
 
         point = new Point(id, x, y);
 
@@ -39,10 +39,10 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
         String id = ctx.ID().get(0).getText();
 
         if(ctx.e1 != null) {
-            Float x1 = (Float) expressionManager.getValue(ctx.e1, this);
-            Float y1 = (Float) expressionManager.getValue(ctx.e2, this);
-            Float x2 = (Float) expressionManager.getValue(ctx.e3, this);
-            Float y2 = (Float) expressionManager.getValue(ctx.e4, this);
+            Float x1 = (Float) expressionManager.getValue(ctx.e1);
+            Float y1 = (Float) expressionManager.getValue(ctx.e2);
+            Float x2 = (Float) expressionManager.getValue(ctx.e3);
+            Float y2 = (Float) expressionManager.getValue(ctx.e4);
             line = new Line(id, x1, y1, x2, y2);
         } else {
             Point p1 = (Point) Main.getVariables().get(ctx.p1.getText());
@@ -59,14 +59,14 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
         String id = ctx.ID().get(0).getText();
 
-        Float radius = (Float) expressionManager.getValue(ctx.r, this);
+        Float radius = (Float) expressionManager.getValue(ctx.r);
 
         if(ctx.p != null) {
             Point p = (Point) Main.getVariables().get(ctx.p.getText());
             circle = new Circle(id, p, radius);
         } else {
-            Float x = (Float) expressionManager.getValue(ctx.e1, this);
-            Float y = (Float) expressionManager.getValue(ctx.e2, this);
+            Float x = (Float) expressionManager.getValue(ctx.e1);
+            Float y = (Float) expressionManager.getValue(ctx.e2);
             circle = new Circle(id, x, y, radius);
         }
 
@@ -84,12 +84,16 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
                 Shape shape2 = (Shape) Main.getVariables().get(ctx.args().expr(1).ID().getText());
                 return shape1.calculateDistance(shape2);
             }
-            case "printVariable" -> {
-                System.out.println(Main.getVariables().get(ctx.args().expr(0).ID().getText()));
-                return (Float) visitChildren(ctx);
-            }
             case "print" -> {
-                System.out.println(visitFunctionCall(ctx.args().expr(0).functionCall()));
+                GeometryDSLParser.ExprContext expr = ctx.args().expr(0);
+                if(expr.ID() != null) {
+                    System.out.println(Main.getVariables().get(expr.ID().getText()));
+                } else if(expr.NUMBER() != null) {
+                    System.out.println(Float.parseFloat(expr.NUMBER().getText()));
+                } else if(expr.functionCall() != null) {
+                    System.out.println(visitFunctionCall(expr.functionCall()));
+                }
+
                 return (Float) visitChildren(ctx);
             }
             case "area" -> {
@@ -119,7 +123,47 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
             Main.getVariables().put(name, visitFunctionCall(ctx.expr().functionCall()));
         }
 
+        if(ctx.expr().expr().size() == 2) {
+            Main.getVariables().put(name, expressionManager.getValue(ctx));
+        }
+
         return visitChildren(ctx);
+    }
+
+    @Override public Object visitForLoop(GeometryDSLParser.ForLoopContext ctx) {
+        visitAssignStmt(ctx.init);
+
+        boolean condition = (boolean) expressionManager.getValue(ctx);
+        for(;condition;) {
+            condition = (boolean) expressionManager.getValue(ctx);
+            if(!condition) break;
+            expressionManager.visitStatement(ctx.statement());
+            visitAssignStmt(ctx.assignStmt().get(1));
+        }
+
+        return null;
+    }
+
+    @Override public Object visitWhileLoop(GeometryDSLParser.WhileLoopContext ctx) {
+        boolean condition = (boolean) expressionManager.getValue(ctx);
+        while(condition) {
+            condition = (boolean) expressionManager.getValue(ctx);
+            if(!condition) break;
+            expressionManager.visitStatement(ctx.statement());
+        }
+
+        return null;
+    }
+
+    @Override public Object visitIfStmt(GeometryDSLParser.IfStmtContext ctx) {
+        boolean condition = (boolean) expressionManager.getValue(ctx);
+        if(condition) {
+            expressionManager.visitStatement(ctx.statement(0));
+        } else {
+            expressionManager.visitStatement(ctx.statement(1));
+        }
+
+        return null;
     }
 
 }

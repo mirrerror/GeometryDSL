@@ -1,48 +1,80 @@
 grammar GeometryDSL;
 
 // Define tokens
-EQUALS   : '=' ;
-COMMA    : ',' ;
-LPAREN   : '(' ;
-RPAREN   : ')' ;
-SEMI     : ';' ;
-FROM     : 'from' ;
-TO       : 'to' ;
-CENTER   : 'center' ;
-RADIUS   : 'radius' ;
-FUNCTION : 'function' ;
+EQUALS      : '=' ;
+COMMA       : ',' ;
+LPAREN      : '(' ;
+RPAREN      : ')' ;
+LBRACE      : '{' ;
+RBRACE      : '}' ;
+SEMI        : ';' ;
+FROM        : 'from' ;
+TO          : 'to' ;
+CENTER      : 'center' ;
+RADIUS      : 'radius' ;
+FUNCTION    : 'function' ;
+FOR         : 'for' ;
+WHILE       : 'while' ;
+PLUS        : '+' ;
+MINUS       : '-' ;
+MULTIPLY    : '*' ;
+DIVIDE      : '/' ;
+GREATER     : '>' ;
+LESS        : '<' ;
+EQUAL       : '==' ;
+NOT_EQUAL   : '!=' ;
+GREATER_EQ  : '>=' ;
+LESS_EQ     : '<=' ;
 
-ID       : [a-zA-Z-] [a-zA-Z0-9-]* ;
-NUMBER   : [0-9]+ ('.' [0-9]+)? ;
-WS       : [ \t\r\n]+ -> skip ;
+ID          : [a-zA-Z-] [a-zA-Z0-9-]* ;
+NUMBER      : [0-9]+ ('.' [0-9]+)? ;
+WS          : [ \t\r\n]+ -> skip ;
 
 // Define parser rules
-geometry : statement+ ;
+geometry     : statement+ ;
 
-statement : (
-          pointStmt
-          | lineStmt
-          | circleStmt
-          | functionCall
-          | assignStmt
-          ) ';'
-          ;
+statement    : singleStatement
+             | blockStatement
+             | forLoop
+             | whileLoop
+             | ifStmt
+             ;
 
-assignStmt: ID '=' expr ;
+singleStatement   : (pointStmt
+             | lineStmt
+             | circleStmt
+             | functionCall
+             | assignStmt
+             | expr)
+             ';'
+             ;
 
-pointStmt : 'point' ID '=' '(' x=expr ',' y=expr ')' ;
+blockStatement    : LBRACE statement* RBRACE ;
 
-lineStmt : 'line' ID '=' 'from' '(' e1=expr ',' e2=expr ')' 'to' '(' e3=expr ',' e4=expr ')' |
-           'line' ID '=' 'from' '(' p1=ID ')' 'to' '(' p2=ID ')' ;
+assignStmt   : ID EQUALS expr ;
 
-circleStmt : 'circle' ID '=' 'center' '(' e1=expr ',' e2=expr ')' 'radius' '=' r=expr |
-             'circle' ID '=' 'center' '(' p=ID ')' 'radius' '=' r=expr ;
+pointStmt    : 'point' ID EQUALS LPAREN x=expr COMMA y=expr RPAREN ;
 
-functionCall : ID '(' args ')' ;
+lineStmt     : 'line' ID EQUALS 'from' LPAREN e1=expr COMMA e2=expr RPAREN 'to' LPAREN e3=expr COMMA e4=expr RPAREN |
+               'line' ID EQUALS 'from' LPAREN p1=ID RPAREN 'to' LPAREN p2=ID RPAREN ;
 
-args : (expr (',' expr)*)? ;
+circleStmt   : 'circle' ID EQUALS 'center' LPAREN e1=expr COMMA e2=expr RPAREN 'radius' EQUALS r=expr |
+               'circle' ID EQUALS 'center' LPAREN p=ID RPAREN 'radius' EQUALS r=expr ;
 
-expr : NUMBER
-     | ID
-     | functionCall // Allow nested function calls
-     ;
+functionCall : ID LPAREN args RPAREN ;
+
+args         : (expr (COMMA expr)*)? ;
+
+expr         : NUMBER
+             | ID
+             | functionCall
+             | expr (PLUS | MINUS | MULTIPLY | DIVIDE) expr
+             ;
+
+booleanExpr  : expr (GREATER | LESS | EQUAL | NOT_EQUAL | GREATER_EQ | LESS_EQ) expr ;
+
+forLoop      : 'for' LPAREN init=assignStmt SEMI condition=booleanExpr SEMI update=assignStmt RPAREN statement ;
+
+whileLoop    : 'while' LPAREN condition=booleanExpr RPAREN statement ;
+
+ifStmt       : 'if' LPAREN condition=booleanExpr RPAREN statement ('else' statement)? ;

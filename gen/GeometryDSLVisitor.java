@@ -1,4 +1,4 @@
-package geometrydsl;// Generated from D:/MyIdeaProjects2023/GeometryDSL/grammar/GeometryDSL.g4 by ANTLR 4.13.1
+// Generated from D:/IdeaProjects/GeometryDSL/grammar/GeometryDSL.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -76,12 +76,6 @@ public interface GeometryDSLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpr(GeometryDSLParser.ExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GeometryDSLParser#booleanExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooleanExpr(GeometryDSLParser.BooleanExprContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link GeometryDSLParser#forLoop}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -93,10 +87,4 @@ public interface GeometryDSLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitWhileLoop(GeometryDSLParser.WhileLoopContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link GeometryDSLParser#ifStmt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIfStmt(GeometryDSLParser.IfStmtContext ctx);
 }
