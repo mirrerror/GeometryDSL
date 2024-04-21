@@ -1,10 +1,10 @@
 package geometrydsl.visual;
 
+import geometrydsl.Main;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 public class JavaFXApplication extends Application {
@@ -17,9 +17,17 @@ public class JavaFXApplication extends Application {
         Scene scene = new Scene(root,600,600, Color.WHITE);
         Stage stage = new Stage();
 
-        figureManager.addLine(root, new geometrydsl.models.Line("test", 10, 10, 100, 100));
-        figureManager.addCircle(root, new geometrydsl.models.Circle("test1", 200, 200, 50));
-        figureManager.addPoint(root, new geometrydsl.models.Point("test2", 300, 300));
+        stage.setFullScreen(true);
+
+        Main.getShapesToDraw().forEach(shape -> {
+            if(shape instanceof geometrydsl.models.Line) {
+                figureManager.addLine(root, (geometrydsl.models.Line) shape);
+            } else if(shape instanceof geometrydsl.models.Circle) {
+                figureManager.addCircle(root, (geometrydsl.models.Circle) shape);
+            } else if(shape instanceof geometrydsl.models.Point) {
+                figureManager.addPoint(root, (geometrydsl.models.Point) shape);
+            }
+        });
 
         stage.setScene(scene);
         stage.show();
