@@ -7,6 +7,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class JavaFXApplication extends Application {
+
+    private final FigureManager figureManager = new FigureManager();
+
     @Override
     public void start(Stage stage) throws Exception {
         Group root = new Group();
