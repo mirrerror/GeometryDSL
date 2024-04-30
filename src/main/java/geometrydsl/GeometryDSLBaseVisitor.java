@@ -1,4 +1,7 @@
-package geometrydsl;// Generated from D:/MyIdeaProjects2023/GeometryDSL/grammar/GeometryDSL.g4 by ANTLR 4.13.1
+// Generated from D:/MyIdeaProjects2023/GeometryDSL/grammar/GeometryDSL.g4 by ANTLR 4.13.1
+
+    package geometrydsl;
+
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**

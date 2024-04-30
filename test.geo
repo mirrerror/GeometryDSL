@@ -19,6 +19,7 @@ print(r1);
 triangle t1 = (p1, p2, p3);
 print(t1);
 polygon poly = (100, 400, 200, 800, 400, 500, 800, 600);
+//print(poly);
 print(poly);
 
 i = 0;
@@ -37,3 +38,6 @@ if(i == 24) {
 for(i = 1; i <= 10; i = i + 1) {
     print(i);
 }
+
+print("Hello World");
+print("e = " + e + " i = " + i);

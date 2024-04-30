@@ -173,6 +173,8 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
                     System.out.println(Float.parseFloat(expr.NUMBER().getText()));
                 } else if(expr.functionCall() != null) {
                     System.out.println(visitFunctionCall(expr.functionCall()));
+                } else if(expr.STRING() != null) {
+                    System.out.println(expressionManager.formatString(expr.STRING().getText()));
                 }
 
                 return (Float) visitChildren(ctx);
@@ -245,6 +247,25 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
         }
 
         return null;
+    }
+
+    @Override
+    public Object visitExpr(GeometryDSLParser.ExprContext ctx) {
+        if(isStringConcat(ctx)) {
+            System.out.println("String concat: " + expressionManager.getValue(ctx.expr(0)) + String.valueOf(expressionManager.getValue(ctx.expr(1))));
+            return expressionManager.getValue(ctx.expr(0)) + String.valueOf(expressionManager.getValue(ctx.expr(1)));
+        }
+
+        return visitChildren(ctx);
+    }
+
+    public boolean isStringConcat(GeometryDSLParser.ExprContext ctx) {
+        if(ctx.expr().size() != 2) return false;
+        GeometryDSLParser.ExprContext test = ctx.expr(0).expr(0);
+        System.out.println(ctx.expr(0).STRING() + " " + ctx.expr(0).ID() + " " + ((test == null) ? "null" : test.getText()));
+        return (ctx.expr(0).STRING() != null || ctx.expr(0).ID() != null)
+                && (ctx.expr(1).STRING() != null || ctx.expr(1).ID() != null)
+                && ctx.PLUS() != null;
     }
 
 }
