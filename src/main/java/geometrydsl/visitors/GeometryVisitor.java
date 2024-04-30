@@ -5,6 +5,9 @@ import geometrydsl.GeometryDSLParser;
 import geometrydsl.Main;
 import geometrydsl.models.*;
 import geometrydsl.utils.ExpressionManager;
+import org.antlr.v4.runtime.tree.TerminalNode;
+
+import java.util.ListIterator;
 
 public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
@@ -121,9 +124,32 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
 
     @Override
     public Object visitPolygonStmt(GeometryDSLParser.PolygonStmtContext ctx) {
-        Polygon polygon = null;
+        Polygon polygon;
 
-        String id = ctx.ID().get(0).getText();
+        ListIterator<TerminalNode> idsIterator = ctx.ID().listIterator();
+
+        String id = idsIterator.next().getText();
+
+        polygon = new Polygon(id);
+
+        boolean usesPoints = false;
+        while(idsIterator.hasNext()) {
+            String pointId = idsIterator.next().getText();
+            Point point = (Point) Main.getVariables().get(pointId);
+            polygon.addPoint(point);
+            usesPoints = true;
+        }
+
+        ListIterator<GeometryDSLParser.ExprContext> exprsIterator = ctx.expr().listIterator();
+
+        if(!usesPoints)
+            while (exprsIterator.hasNext()) {
+                Float x = (Float) expressionManager.getValue(exprsIterator.next());
+                if(!exprsIterator.hasNext()) break;
+                Float y = (Float) expressionManager.getValue(exprsIterator.next());
+
+                polygon.addPoint(x, y);
+            }
 
         Main.getVariables().put(id, polygon);
         return visitChildren(ctx);
@@ -189,7 +215,7 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
         visitAssignStmt(ctx.init);
 
         boolean condition = (boolean) expressionManager.getValue(ctx);
-        for(;condition;) {
+        while (condition) {
             condition = (boolean) expressionManager.getValue(ctx);
             if(!condition) break;
             expressionManager.visitStatement(ctx.statement());

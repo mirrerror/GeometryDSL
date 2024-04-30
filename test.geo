@@ -18,7 +18,7 @@ rectangle r1 = (p1, 100, 200);
 print(r1);
 triangle t1 = (p1, p2, p3);
 print(t1);
-polygon poly = (100, 400, 200, 800);
+polygon poly = (100, 400, 200, 800, 400, 500, 800, 600);
 print(poly);
 
 i = 0;
