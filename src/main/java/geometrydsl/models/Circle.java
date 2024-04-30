@@ -1,34 +1,23 @@
 package geometrydsl.models;
 
-import java.util.Objects;
-
 public class Circle extends Shape {
 
-    private String id;
     private float x;
     private float y;
     private float radius;
 
     public Circle(String id, float x, float y, float radius) {
-        this.id = id;
+        super(id);
         this.x = x;
         this.y = y;
         this.radius = radius;
     }
 
     public Circle(String id, Point point, float radius) {
-        this.id = id;
+        super(id);
         this.x = point.getX();
         this.y = point.getY();
         this.radius = radius;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public float getX() {
@@ -56,22 +45,9 @@ public class Circle extends Shape {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Circle circle = (Circle) o;
-        return Objects.equals(id, circle.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
     public String toString() {
         return "Circle{" +
-                "id='" + id + '\'' +
+                "id='" + getId() + '\'' +
                 ", x=" + x +
                 ", y=" + y +
                 ", radius=" + radius +

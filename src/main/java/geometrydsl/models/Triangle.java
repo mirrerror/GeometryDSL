@@ -1,26 +1,31 @@
 package geometrydsl.models;
 
-public class Line extends Shape {
-
+public class Triangle extends Shape {
     private float x1;
     private float y1;
     private float x2;
     private float y2;
+    private float x3;
+    private float y3;
 
-    public Line(String id, float x1, float y1, float x2, float y2) {
+    public Triangle(String id, float x1, float y1, float x2, float y2, float x3, float y3) {
         super(id);
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
+        this.x3 = x3;
+        this.y3 = y3;
     }
 
-    public Line(String id, Point point1, Point point2) {
+    public Triangle(String id, Point p1, Point p2, Point p3) {
         super(id);
-        this.x1 = point1.getX();
-        this.y1 = point1.getY();
-        this.x2 = point2.getX();
-        this.y2 = point2.getY();
+        this.x1 = p1.getX();
+        this.y1 = p1.getY();
+        this.x2 = p2.getX();
+        this.y2 = p2.getY();
+        this.x3 = p3.getX();
+        this.y3 = p3.getY();
     }
 
     public float getX1() {
@@ -55,48 +60,59 @@ public class Line extends Shape {
         this.y2 = y2;
     }
 
+    public float getX3() {
+        return x3;
+    }
+
+    public void setX3(float x3) {
+        this.x3 = x3;
+    }
+
+    public float getY3() {
+        return y3;
+    }
+
+    public void setY3(float y3) {
+        this.y3 = y3;
+    }
+
     @Override
     public String toString() {
-        return "Line{" +
+        return "Triangle{" +
                 "id='" + getId() + '\'' +
                 ", x1=" + x1 +
                 ", y1=" + y1 +
                 ", x2=" + x2 +
                 ", y2=" + y2 +
+                ", x3=" + x3 +
+                ", y3=" + y3 +
                 '}';
     }
 
     @Override
     public float calculateArea() {
-        return 0; // Lines do not have area
+        return (float) 0.5 * Math.abs(x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2));
     }
 
     @Override
     public float calculatePerimeter() {
-        return (float) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        return (float) (Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))
+                + Math.sqrt(Math.pow(x3 - x2, 2) + Math.pow(y3 - y2, 2))
+                + Math.sqrt(Math.pow(x1 - x3, 2) + Math.pow(y1 - y3, 2)));
     }
 
     @Override
     public float calculateDistance(Point p) {
-        float numerator = Math.abs((y2 - y1) * p.getX() - (x2 - x1) * p.getY() + x2 * y1 - y2 * x1);
-        float denominator = (float) Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
-
-        return numerator / denominator;
+        return 0;
     }
 
     @Override
     public float calculateDistance(Line l) {
-        float xDelta = x2 - x1;
-        float yDelta = y2 - y1;
-        float numerator = Math.abs((l.getY2() - l.getY1()) * x1 - (l.getX2() - l.getX1()) * y1 + l.getX2() * l.getY1() - l.getY2() * l.getX1());
-        float denominator = (float) Math.sqrt(Math.pow(yDelta, 2) + Math.pow(xDelta, 2));
-
-        return numerator / denominator;
+        return 0;
     }
 
     @Override
     public float calculateDistance(Circle c) {
-        float distanceToCenter = (float) Math.sqrt(Math.pow(c.getX() - x1, 2) + Math.pow(c.getY() - y1, 2));
-        return Math.abs(distanceToCenter - c.getRadius());
+        return 0;
     }
 }
