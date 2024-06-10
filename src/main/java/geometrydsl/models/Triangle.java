@@ -116,7 +116,22 @@ public class Triangle extends Shape {
         return createPolygon().calculateDistance(c);
     }
 
-    private Polygon createPolygon() {
+    @Override
+    public float calculateDistance(Rectangle r) {
+        return createPolygon().calculateDistance(r);
+    }
+
+    @Override
+    public float calculateDistance(Triangle t) {
+        return createPolygon().calculateDistance(t);
+    }
+
+    @Override
+    public float calculateDistance(Polygon p) {
+        return createPolygon().calculateDistance(p);
+    }
+
+    public Polygon createPolygon() {
         Polygon polygon = new Polygon(null);
         polygon.addPoint(x1, y1);
         polygon.addPoint(x2, y2);

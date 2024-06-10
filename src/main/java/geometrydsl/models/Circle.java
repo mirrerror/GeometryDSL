@@ -80,4 +80,19 @@ public class Circle extends Shape {
         float distanceBetweenCenters = (float) Math.sqrt(Math.pow(c.getX() - x, 2) + Math.pow(c.getY() - y, 2));
         return Math.abs(distanceBetweenCenters - (c.getRadius() + radius));
     }
+
+    @Override
+    public float calculateDistance(Rectangle r) {
+        return r.calculateDistance(this);
+    }
+
+    @Override
+    public float calculateDistance(Triangle t) {
+        return t.calculateDistance(this);
+    }
+
+    @Override
+    public float calculateDistance(Polygon p) {
+        return p.calculateDistance(this);
+    }
 }

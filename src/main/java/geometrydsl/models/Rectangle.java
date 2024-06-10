@@ -91,7 +91,22 @@ public class Rectangle extends Shape{
         return createPolygon().calculateDistance(c);
     }
 
-    private Polygon createPolygon() {
+    @Override
+    public float calculateDistance(Rectangle r) {
+        return createPolygon().calculateDistance(r);
+    }
+
+    @Override
+    public float calculateDistance(Triangle t) {
+        return createPolygon().calculateDistance(t);
+    }
+
+    @Override
+    public float calculateDistance(Polygon p) {
+        return createPolygon().calculateDistance(p);
+    }
+
+    public Polygon createPolygon() {
         Polygon polygon = new Polygon(null);
         float halfWidth = width/2;
         float halfHeight = height/2;

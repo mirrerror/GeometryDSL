@@ -17,6 +17,12 @@ public abstract class Shape {
             return calculateDistance((Line) shape);
         } else if(shape instanceof Circle) {
             return calculateDistance((Circle) shape);
+        } else if(shape instanceof Rectangle) {
+            return calculateDistance((Rectangle) shape);
+        } else if(shape instanceof Triangle) {
+            return calculateDistance((Triangle) shape);
+        } else if(shape instanceof Polygon) {
+            return calculateDistance((Polygon) shape);
         } else {
             throw new IllegalArgumentException("Unsupported shape type for distance calculation");
         }
@@ -31,6 +37,9 @@ public abstract class Shape {
     public abstract float calculateDistance(Point p);
     public abstract float calculateDistance(Line l);
     public abstract float calculateDistance(Circle c);
+    public abstract float calculateDistance(Rectangle r);
+    public abstract float calculateDistance(Triangle t);
+    public abstract float calculateDistance(Polygon p);
 
     @Override
     public boolean equals(Object o) {

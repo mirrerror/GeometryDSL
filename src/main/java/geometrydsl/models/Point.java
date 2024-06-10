@@ -60,4 +60,19 @@ public class Point extends Shape {
     public float calculateDistance(Circle c) {
         return c.calculateDistance(this);
     }
+
+    @Override
+    public float calculateDistance(Rectangle r) {
+        return r.calculateDistance(this);
+    }
+
+    @Override
+    public float calculateDistance(Triangle t) {
+        return t.calculateDistance(this);
+    }
+
+    @Override
+    public float calculateDistance(Polygon p) {
+        return p.calculateDistance(this);
+    }
 }
