@@ -189,6 +189,66 @@ public class Polygon extends Shape {
         return minDistance;
     }
 
+    @Override
+    public boolean contains(Point p) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Line l) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Circle c) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Rectangle r) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Triangle t) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Polygon p) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Point p) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Line l) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Circle c) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Rectangle r) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Triangle t) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Polygon p) {
+        return false;
+    }
+
     private float segmentToSegmentDistance(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
         float minDist = Float.MAX_VALUE;
         minDist = Math.min(minDist, pointToSegmentDistance(x1, y1, x3, y3, x4, y4));

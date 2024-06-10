@@ -112,4 +112,84 @@ public class Line extends Shape {
     public float calculateDistance(Polygon p) {
         return p.calculateDistance(this);
     }
+
+    @Override
+    public boolean contains(Point p) {
+        float crossProduct = (p.getY() - y1) * (x2 - x1) - (p.getX() - x1) * (y2 - y1);
+        if (Math.abs(crossProduct) > 1e-6) {
+            return false;
+        }
+
+        float dotProduct = (p.getX() - x1) * (x2 - x1) + (p.getY() - y1) * (y2 - y1);
+        if (dotProduct < 0) {
+            return false;
+        }
+
+        float squaredLength = calculateLength() * calculateLength();
+        return !(dotProduct > squaredLength);
+    }
+
+    @Override
+    public boolean contains(Line l) {
+        return contains(new Point(null, l.getX1(), l.getY1())) && contains(new Point(null, l.getX2(), l.getY2()));
+    }
+
+    @Override
+    public boolean contains(Circle c) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Rectangle r) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Triangle t) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Polygon p) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Point p) {
+        return contains(p);
+    }
+
+    @Override
+    public boolean intersects(Line l) {
+        float denominator = ((l.getX2() - l.getX1()) * (y2 - y1)) - ((l.getY2() - l.getY1()) * (x2 - x1));
+        if (denominator == 0) {
+            return false; // lines are parallel
+        }
+
+        float ua = (((l.getY2() - l.getY1()) * (x1 - l.getX1())) - ((l.getX2() - l.getX1()) * (y1 - l.getY1()))) / denominator;
+        float ub = (((y2 - y1) * (x1 - l.getX1())) - ((x2 - x1) * (y1 - l.getY1()))) / denominator;
+
+        return (ua >= 0 && ua <= 1) && (ub >= 0 && ub <= 1);
+    }
+
+    @Override
+    public boolean intersects(Circle c) {
+        float distance = c.calculateDistance(new Point(null, (x1 + x2) / 2, (y1 + y2) / 2));
+        return distance <= c.getRadius();
+    }
+
+    @Override
+    public boolean intersects(Rectangle r) {
+        return r.intersects(this);
+    }
+
+    @Override
+    public boolean intersects(Triangle t) {
+        return t.intersects(this);
+    }
+
+    @Override
+    public boolean intersects(Polygon p) {
+        return p.intersects(this);
+    }
 }

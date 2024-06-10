@@ -169,15 +169,27 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
                 StringBuilder outputBuilder = new StringBuilder();
 
                 for(GeometryDSLParser.ExprContext expr : ctx.args().expr()) {
-                    for(GeometryDSLParser.ExprContext innerExpr : expr.expr()) {
-                        if(innerExpr.ID() != null) {
-                            outputBuilder.append(Main.getVariables().get(innerExpr.ID().getText()));
-                        } else if(innerExpr.NUMBER() != null) {
-                            outputBuilder.append(Float.parseFloat(innerExpr.NUMBER().getText()));
-                        } else if(innerExpr.functionCall() != null) {
-                            outputBuilder.append(visitFunctionCall(innerExpr.functionCall()));
-                        } else if(innerExpr.STRING() != null) {
-                            outputBuilder.append(expressionManager.formatString(innerExpr.STRING().getText()));
+                    if(!expr.expr().isEmpty()) {
+                        for(GeometryDSLParser.ExprContext innerExpr : expr.expr()) {
+                            if(innerExpr.ID() != null) {
+                                outputBuilder.append(Main.getVariables().get(innerExpr.ID().getText()));
+                            } else if(innerExpr.NUMBER() != null) {
+                                outputBuilder.append(Float.parseFloat(innerExpr.NUMBER().getText()));
+                            } else if(innerExpr.functionCall() != null) {
+                                outputBuilder.append(visitFunctionCall(innerExpr.functionCall()));
+                            } else if(innerExpr.STRING() != null) {
+                                outputBuilder.append(expressionManager.formatString(innerExpr.STRING().getText()));
+                            }
+                        }
+                    } else {
+                        if(expr.ID() != null) {
+                            outputBuilder.append(Main.getVariables().get(expr.ID().getText()));
+                        } else if(expr.NUMBER() != null) {
+                            outputBuilder.append(Float.parseFloat(expr.NUMBER().getText()));
+                        } else if(expr.functionCall() != null) {
+                            outputBuilder.append(visitFunctionCall(expr.functionCall()));
+                        } else if(expr.STRING() != null) {
+                            outputBuilder.append(expressionManager.formatString(expr.STRING().getText()));
                         }
                     }
                 }

@@ -75,4 +75,65 @@ public class Point extends Shape {
     public float calculateDistance(Polygon p) {
         return p.calculateDistance(this);
     }
+
+    @Override
+    public boolean contains(Point p) {
+        return this.x == p.getX() && this.y == p.getY();
+    }
+
+    @Override
+    public boolean contains(Line l) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Circle c) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Rectangle r) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Triangle t) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Polygon p) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Point p) {
+        return contains(p);
+    }
+
+    @Override
+    public boolean intersects(Line l) {
+        return l.contains(this);
+    }
+
+    @Override
+    public boolean intersects(Circle c) {
+        float distanceToCenter = calculateDistance(new Point(null, c.getX(), c.getY()));
+        return distanceToCenter <= c.getRadius();
+    }
+
+    @Override
+    public boolean intersects(Rectangle r) {
+        return r.contains(this);
+    }
+
+    @Override
+    public boolean intersects(Triangle t) {
+        return t.contains(this);
+    }
+
+    @Override
+    public boolean intersects(Polygon p) {
+        return p.contains(this);
+    }
 }
