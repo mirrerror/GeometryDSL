@@ -166,16 +166,23 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
                 return shape1.calculateDistance(shape2);
             }
             case "print" -> {
-                GeometryDSLParser.ExprContext expr = ctx.args().expr(0);
-                if(expr.ID() != null) {
-                    System.out.println(Main.getVariables().get(expr.ID().getText()));
-                } else if(expr.NUMBER() != null) {
-                    System.out.println(Float.parseFloat(expr.NUMBER().getText()));
-                } else if(expr.functionCall() != null) {
-                    System.out.println(visitFunctionCall(expr.functionCall()));
-                } else if(expr.STRING() != null) {
-                    System.out.println(expressionManager.formatString(expr.STRING().getText()));
+                StringBuilder outputBuilder = new StringBuilder();
+
+                for(GeometryDSLParser.ExprContext expr : ctx.args().expr()) {
+                    for(GeometryDSLParser.ExprContext innerExpr : expr.expr()) {
+                        if(innerExpr.ID() != null) {
+                            outputBuilder.append(Main.getVariables().get(innerExpr.ID().getText()));
+                        } else if(innerExpr.NUMBER() != null) {
+                            outputBuilder.append(Float.parseFloat(innerExpr.NUMBER().getText()));
+                        } else if(innerExpr.functionCall() != null) {
+                            outputBuilder.append(visitFunctionCall(innerExpr.functionCall()));
+                        } else if(innerExpr.STRING() != null) {
+                            outputBuilder.append(expressionManager.formatString(innerExpr.STRING().getText()));
+                        }
+                    }
                 }
+
+                System.out.println(outputBuilder);
 
                 return (Float) visitChildren(ctx);
             }
@@ -262,7 +269,7 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
     public boolean isStringConcat(GeometryDSLParser.ExprContext ctx) {
         if(ctx.expr().size() != 2) return false;
         GeometryDSLParser.ExprContext test = ctx.expr(0).expr(0);
-        System.out.println(ctx.expr(0).STRING() + " " + ctx.expr(0).ID() + " " + ((test == null) ? "null" : test.getText()));
+        //System.out.println(ctx.expr(0).STRING() + " " + ctx.expr(0).ID() + " " + ((test == null) ? "null" : test.getText()));
         return (ctx.expr(0).STRING() != null || ctx.expr(0).ID() != null)
                 && (ctx.expr(1).STRING() != null || ctx.expr(1).ID() != null)
                 && ctx.PLUS() != null;
