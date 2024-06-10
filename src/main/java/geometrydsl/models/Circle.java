@@ -71,8 +71,8 @@ public class Circle extends Shape {
 
     @Override
     public float calculateDistance(Line l) {
-        float distanceToCenter = (float) Math.sqrt(Math.pow(l.getX1() - x, 2) + Math.pow(l.getY1() - y, 2));
-        return Math.abs(distanceToCenter - radius);
+        Triangle triangle = new Triangle(null, x, y, l.getX1(), l.getY1(), l.getX2(), l.getY2());
+        return (2 * triangle.calculateArea() / l.calculateLength()) - radius;
     }
 
     @Override

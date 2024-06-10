@@ -252,7 +252,7 @@ public class GeometryVisitor extends GeometryDSLBaseVisitor<Object> {
     @Override
     public Object visitExpr(GeometryDSLParser.ExprContext ctx) {
         if(isStringConcat(ctx)) {
-            System.out.println("String concat: " + expressionManager.getValue(ctx.expr(0)) + String.valueOf(expressionManager.getValue(ctx.expr(1))));
+            //System.out.println("String concat: " + expressionManager.getValue(ctx.expr(0)) + String.valueOf(expressionManager.getValue(ctx.expr(1))));
             return expressionManager.getValue(ctx.expr(0)) + String.valueOf(expressionManager.getValue(ctx.expr(1)));
         }
 

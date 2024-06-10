@@ -68,35 +68,33 @@ public class Line extends Shape {
 
     @Override
     public float calculateArea() {
-        return 0; // Lines do not have area
+        throw new UnsupportedOperationException("Area calculation is not supported for lines");
     }
 
     @Override
     public float calculatePerimeter() {
+        throw new UnsupportedOperationException("Perimeter calculation is not supported for lines");
+    }
+
+    public float calculateLength() {
         return (float) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
     @Override
     public float calculateDistance(Point p) {
-        float numerator = Math.abs((y2 - y1) * p.getX() - (x2 - x1) * p.getY() + x2 * y1 - y2 * x1);
-        float denominator = (float) Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
-
-        return numerator / denominator;
+        Triangle triangle = new Triangle(null, p.getX(), p.getY(), getX1(), getY1(), getX2(), getY2());
+        return (2f * triangle.calculateArea() / calculateLength());
     }
 
     @Override
     public float calculateDistance(Line l) {
-        float xDelta = x2 - x1;
-        float yDelta = y2 - y1;
-        float numerator = Math.abs((l.getY2() - l.getY1()) * x1 - (l.getX2() - l.getX1()) * y1 + l.getX2() * l.getY1() - l.getY2() * l.getX1());
-        float denominator = (float) Math.sqrt(Math.pow(yDelta, 2) + Math.pow(xDelta, 2));
-
-        return numerator / denominator;
+        Triangle triangle1 = new Triangle(null, l.getX1(), l.getY1(), l.getX2(), l.getY2(), x1, y1);
+        Triangle triangle2 = new Triangle(null, l.getX1(), l.getY1(), l.getX2(), l.getY2(), x2, y2);
+        return Math.min(2 * triangle1.calculateArea() / l.calculateLength(), 2 * triangle2.calculateArea() / l.calculateLength());
     }
 
     @Override
     public float calculateDistance(Circle c) {
-        float distanceToCenter = (float) Math.sqrt(Math.pow(c.getX() - x1, 2) + Math.pow(c.getY() - y1, 2));
-        return Math.abs(distanceToCenter - c.getRadius());
+        return c.calculateDistance(this);
     }
 }

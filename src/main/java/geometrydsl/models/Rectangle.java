@@ -78,16 +78,27 @@ public class Rectangle extends Shape{
 
     @Override
     public float calculateDistance(Point p) {
-        return 0;
+        return createPolygon().calculateDistance(p);
     }
 
     @Override
     public float calculateDistance(Line l) {
-        return 0;
+        return createPolygon().calculateDistance(l);
     }
 
     @Override
     public float calculateDistance(Circle c) {
-        return 0;
+        return createPolygon().calculateDistance(c);
+    }
+
+    private Polygon createPolygon() {
+        Polygon polygon = new Polygon(null);
+        float halfWidth = width/2;
+        float halfHeight = height/2;
+        polygon.addPoint(x + halfWidth, y + halfHeight);
+        polygon.addPoint(x - halfWidth, y + halfHeight);
+        polygon.addPoint(x - halfWidth, y - halfHeight);
+        polygon.addPoint(x + halfWidth, y - halfHeight);
+        return polygon;
     }
 }

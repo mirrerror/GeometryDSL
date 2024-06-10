@@ -103,16 +103,24 @@ public class Triangle extends Shape {
 
     @Override
     public float calculateDistance(Point p) {
-        return 0;
+        return createPolygon().calculateDistance(p);
     }
 
     @Override
     public float calculateDistance(Line l) {
-        return 0;
+        return createPolygon().calculateDistance(l);
     }
 
     @Override
     public float calculateDistance(Circle c) {
-        return 0;
+        return createPolygon().calculateDistance(c);
+    }
+
+    private Polygon createPolygon() {
+        Polygon polygon = new Polygon(null);
+        polygon.addPoint(x1, y1);
+        polygon.addPoint(x2, y2);
+        polygon.addPoint(x3, y3);
+        return polygon;
     }
 }
