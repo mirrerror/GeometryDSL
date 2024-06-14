@@ -52,6 +52,8 @@ public class ExpressionManager {
             return Float.parseFloat(ctx.NUMBER().getText());
         } else if(ctx.functionCall() != null) {
             return visitor.visitFunctionCall(ctx.functionCall());
+        } else if(ctx.STRING() != null) {
+            return formatString(ctx.STRING().getText());
         } else {
             return null;
         }
@@ -209,6 +211,10 @@ public class ExpressionManager {
         }
 
         return null;
+    }
+
+    public String formatString(String str) {
+        return str.substring(1, str.length() - 1);
     }
 
 }

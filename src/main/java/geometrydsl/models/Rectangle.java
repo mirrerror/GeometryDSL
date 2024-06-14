@@ -78,16 +78,102 @@ public class Rectangle extends Shape{
 
     @Override
     public float calculateDistance(Point p) {
-        return 0;
+        return createPolygon().calculateDistance(p);
     }
 
     @Override
     public float calculateDistance(Line l) {
-        return 0;
+        return createPolygon().calculateDistance(l);
     }
 
     @Override
     public float calculateDistance(Circle c) {
-        return 0;
+        return createPolygon().calculateDistance(c);
+    }
+
+    @Override
+    public float calculateDistance(Rectangle r) {
+        return createPolygon().calculateDistance(r);
+    }
+
+    @Override
+    public float calculateDistance(Triangle t) {
+        return createPolygon().calculateDistance(t);
+    }
+
+    @Override
+    public float calculateDistance(Polygon p) {
+        return createPolygon().calculateDistance(p);
+    }
+
+    @Override
+    public boolean contains(Point p) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Line l) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Circle c) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Rectangle r) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Triangle t) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Polygon p) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Point p) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Line l) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Circle c) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Rectangle r) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Triangle t) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Polygon p) {
+        return false;
+    }
+
+    public Polygon createPolygon() {
+        Polygon polygon = new Polygon(null);
+        float halfWidth = width/2;
+        float halfHeight = height/2;
+        polygon.addPoint(x + halfWidth, y + halfHeight);
+        polygon.addPoint(x - halfWidth, y + halfHeight);
+        polygon.addPoint(x - halfWidth, y - halfHeight);
+        polygon.addPoint(x + halfWidth, y - halfHeight);
+        return polygon;
     }
 }

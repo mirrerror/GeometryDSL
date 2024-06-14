@@ -38,12 +38,12 @@ public class Point extends Shape {
 
     @Override
     public float calculateArea() {
-        return 0; // Points do not have area
+        throw new UnsupportedOperationException("Points do not have area");
     }
 
     @Override
     public float calculatePerimeter() {
-        return 0; // Points do not have perimeter
+        throw new UnsupportedOperationException("Points do not have perimeter");
     }
 
     @Override
@@ -53,15 +53,87 @@ public class Point extends Shape {
 
     @Override
     public float calculateDistance(Line l) {
-        float numerator = Math.abs((l.getY2() - l.getY1()) * x - (l.getX2() - l.getX1()) * y + l.getX2() * l.getY1() - l.getY2() * l.getX1());
-        float denominator = (float) Math.sqrt(Math.pow(l.getY2() - l.getY1(), 2) + Math.pow(l.getX2() - l.getX1(), 2));
-
-        return numerator / denominator;
+        return l.calculateDistance(this);
     }
 
     @Override
     public float calculateDistance(Circle c) {
-        float distanceToCenter = (float) Math.sqrt(Math.pow(c.getX() - x, 2) + Math.pow(c.getY() - y, 2));
-        return Math.abs(distanceToCenter - c.getRadius());
+        return c.calculateDistance(this);
+    }
+
+    @Override
+    public float calculateDistance(Rectangle r) {
+        return r.calculateDistance(this);
+    }
+
+    @Override
+    public float calculateDistance(Triangle t) {
+        return t.calculateDistance(this);
+    }
+
+    @Override
+    public float calculateDistance(Polygon p) {
+        return p.calculateDistance(this);
+    }
+
+    @Override
+    public boolean contains(Point p) {
+        return this.x == p.getX() && this.y == p.getY();
+    }
+
+    @Override
+    public boolean contains(Line l) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Circle c) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Rectangle r) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Triangle t) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Polygon p) {
+        return false;
+    }
+
+    @Override
+    public boolean intersects(Point p) {
+        return contains(p);
+    }
+
+    @Override
+    public boolean intersects(Line l) {
+        return l.contains(this);
+    }
+
+    @Override
+    public boolean intersects(Circle c) {
+        float distanceToCenter = calculateDistance(new Point(null, c.getX(), c.getY()));
+        return distanceToCenter <= c.getRadius();
+    }
+
+    @Override
+    public boolean intersects(Rectangle r) {
+        return r.contains(this);
+    }
+
+    @Override
+    public boolean intersects(Triangle t) {
+        return t.contains(this);
+    }
+
+    @Override
+    public boolean intersects(Polygon p) {
+        return p.contains(this);
     }
 }
